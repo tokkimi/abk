@@ -4,8 +4,9 @@
 
 Projet Supabase dédié : `abk-gestion` (`fggifjjivbwdxfzesjpq`), organisation
 choisie par le propriétaire, région Paris. Coût annoncé à la création : 0 USD/mois.
-Accès réel : `https://abk-git-feature-abk-management-tokkimis-projects.vercel.app/gestion/`.
-Le site public de production n'a pas été remplacé. Un administrateur Direction ABK
+Accès réel : `https://abk-ten.vercel.app/gestion/`, depuis le petit bonhomme du
+site `https://abk-ten.vercel.app`. Le raccordement a été publié en production à la
+demande du propriétaire. Un administrateur Direction ABK
 a été provisionné dans Supabase Auth ; aucun mot de passe n'est stocké dans ce dépôt.
 Le compte peut changer son mot de passe depuis son espace ; les autres sessions
 sont alors révoquées. Les jeux d'essai ont été supprimés de la base réelle.
@@ -20,8 +21,8 @@ Les tables sont accessibles uniquement côté serveur. `verify_jwt=false` concer
 le contrôle du relais : la fonction effectue elle-même son authentification avant
 toute opération ; elle n'autorise pas les appels publics sans jeton.
 
-Les variables Vercel de cet environnement sont `ABK_BACKEND_URL`,
-`ABK_BACKEND_TOKEN` et `APP_ORIGIN`. Les secrets sont ajoutés par entrée standard,
+Les variables Vercel de production sont `ABK_BACKEND_URL`,
+`ABK_BACKEND_TOKEN` et `APP_ORIGIN` (https://abk-ten.vercel.app). Les secrets sont ajoutés par entrée standard,
 sans argument de commande. `/server/`, `/edge/`, `/scripts/` et `.env*` ne sont pas
 servis par le build. Le point de provisionnement `abk-initialize` a été fermé et
 redéployé avec vérification JWT après création du premier compte.

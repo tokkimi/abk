@@ -11,7 +11,9 @@ try {
     }),
     errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.goto(c.APP_ORIGIN + "/gestion/");
+  await page.goto(c.APP_ORIGIN + "/",{waitUntil:'domcontentloaded'});
+  await page.getByRole('link',{name:'Connexion à votre espace',exact:true}).click();
+  await page.waitForURL('**/gestion/');
   await page.getByLabel("Adresse e-mail").fill(c.ADMIN_EMAIL);
   await page.getByLabel("Mot de passe", { exact: true }).fill(c.ADMIN_PASSWORD);
   await page.getByRole("button", { name: "Me connecter", exact: true }).click();
