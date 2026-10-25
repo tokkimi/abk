@@ -1,4 +1,5 @@
 (() => {
+  const inboxScript=document.createElement('script');inboxScript.src='/quote-inbox.js';inboxScript.defer=true;document.head.append(inboxScript);
   const nav = document.querySelector('header.nav');
   if (nav) {
     const menu = nav.querySelector('nav');

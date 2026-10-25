@@ -17,15 +17,20 @@ Le projet Vercel est déjà relié à ce dépôt, avec `main` comme branche de p
 Site statique HTML, CSS et JavaScript. Pages d'expertises distinctes, animations
 image par image, navigation et questionnaires de devis.
 
-Important : la page de connexion indique honnêtement que l'accès sécurisé n'est
-pas activé. Le suivi présenté sur la home est une démonstration. Les formulaires
-préparent un e-mail et n'enregistrent pas de demande sur un serveur.
+Le suivi illustré sur la home reste une démonstration du site public. La nouvelle
+application de gestion est dans `/gestion/`, avec une API Vercel séparée. Sans
+configuration serveur, elle refuse les connexions et les écritures. Les formulaires
+publics gardent leur récapitulatif e-mail ; lorsque la base est disponible, ils
+proposent aussi l'envoi direct dans la boîte interne ABK.
 
 ## Espace de gestion demandé
 
 Le périmètre attendu est décrit dans [docs/ESPACE-GESTION.md](docs/ESPACE-GESTION.md).
-Ce module n'est pas implémenté par cette récupération. Ne pas présenter une
-maquette, des données locales ou un identifiant partagé comme un espace sécurisé.
+L'implémentation et son installation sont décrites dans
+[docs/INSTALLATION-ADMIN.md](docs/INSTALLATION-ADMIN.md). Les comptes de production
+utilisent Supabase Auth et PostgreSQL ; aucun compte partagé ni mot de passe
+administrateur n'est inclus. La branche `feature/abk-management` n'est pas fusionnée
+en production tant que l'infrastructure et les essais réels ne sont pas validés.
 
 ## Confidentialité et travail collaboratif
 
