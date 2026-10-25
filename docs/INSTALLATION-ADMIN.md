@@ -1,5 +1,14 @@
 # Administration ABK
 
+## Présentation publique
+
+`/demo/` est un aperçu public en lecture seule pour présenter les écrans aux
+directeurs. Toutes les données sont fictives et signalées par un bandeau permanent.
+Aucun compte, document réel, envoi ni enregistrement serveur n'est utilisé.
+Cet aperçu ne signifie pas que Supabase ou les comptes de production sont activés.
+Les tests `tests/demo-check.mjs` vérifient les écrans, le blocage des écritures et
+l'absence d'appel à l'API de gestion. Ne pas y saisir d'informations personnelles.
+
 ## Fonctionnement livré
 
 Une connexion commune à `/gestion/`, puis un affichage selon le rôle serveur :
