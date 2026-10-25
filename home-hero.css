@@ -1,0 +1,15 @@
+/* A full-viewport image sequence; the copy stays the same throughout. */
+.hero-scroll{--hero-screen:100svh;--hero-travel:1100px;position:relative;width:100%;height:calc(var(--hero-screen) + var(--hero-travel));background:transparent}
+.hero-scroll>.hero.wrap{position:sticky!important;top:0;width:100%;height:var(--hero-screen)!important;min-height:0!important;max-width:none;margin:0!important;border:0;border-radius:0!important;box-shadow:none;padding:50px max(24px,calc((100% - 1180px)/2))!important;display:grid!important;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:center;overflow:hidden;transform:none!important;opacity:1!important}
+.hero-scroll picture{position:absolute;inset:0;z-index:-2;display:block}
+.hero-scroll .hero-photo{object-fit:cover;object-position:center;width:100%!important;height:100%;max-width:none}
+.hero-scroll .hero:after{display:none!important}
+.hero-scroll .hero-copy{position:relative;z-index:1;max-width:650px;text-shadow:0 2px 12px #000b}
+.hero-scroll.is-initializing .hero-copy{opacity:0}
+.hero-scroll.is-ready .hero-copy{animation:hero-copy-fade 1000ms ease both}
+@keyframes hero-copy-fade{from{opacity:0}to{opacity:1}}
+@media(max-width:760px){.hero-scroll{--hero-travel:850px}.hero-scroll>.hero.wrap{padding:35px 22px!important;display:flex!important;align-items:center!important}.hero-scroll .hero-photo{object-position:55% center!important}.hero-scroll .hero-copy{width:100%;max-width:560px}.hero-scroll .hero:after{background:linear-gradient(90deg,#061d37d9,#061d3770),linear-gradient(0deg,#061d3770,transparent 70%)}.hero-scroll .hero h1{font-size:clamp(34px,8.5vw,42px)!important}.hero-scroll .hero .lead{font-size:15px!important;margin:19px 0}.hero-scroll .hero .trust{margin-top:22px!important}}
+@media(max-height:650px){.hero-scroll{--hero-screen:650px}.hero-scroll>.hero.wrap{position:sticky!important;top:calc(100svh - 650px)}}
+/* Mobile pinning is handled by the document lock, without a visible scroll spacer. */
+@media(max-width:760px){.hero-scroll{height:auto;--hero-travel:0px;--hero-screen:100svh}.hero-scroll>.hero.wrap{position:relative!important;top:0!important}.hero-scroll .hero-photo{object-position:center!important}}
+@media(prefers-reduced-motion:reduce){.hero-scroll{height:auto;--hero-travel:0px}.hero-scroll>.hero.wrap{position:relative!important;top:0}.hero-scroll .hero-copy{opacity:1!important;animation:none!important}}
