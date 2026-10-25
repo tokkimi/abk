@@ -11,6 +11,18 @@ a été provisionné dans Supabase Auth ; aucun mot de passe n'est stocké dans 
 Le compte peut changer son mot de passe depuis son espace ; les autres sessions
 sont alors révoquées. Les jeux d'essai ont été supprimés de la base réelle.
 
+À la demande ultérieure du propriétaire, les données pédagogiques de `/demo/`
+ont été ajoutées à l'espace réel : 3 clients et chantiers, 2 profils partenaires,
+7 tâches, 2 demandes, 4 messages, 2 PDF fictifs, 2 interventions et 4 écritures
+comptables. Les noms, notes et documents portent une mention d'exemple.
+Ces exemples sont conservés pour la prise en main, modifiables dans l'admin,
+et les écritures fictives figurent dans les totaux tant qu'elles sont présentes.
+Les profils fictifs n'ont aucun compte Supabase Auth ni mot de passe de connexion.
+Aucun e-mail ou notification externe n'a été envoyé.
+`scripts/example-data.mjs` génère leur ajout explicite, sans écraser les dossiers
+existants ; son idempotence et ses relations sont testées. Ne pas l'exécuter
+automatiquement au déploiement ni retirer les exemples sans demande du propriétaire.
+
 Architecture déployée : Vercel sert le site et `/api/gestion` relaie les requêtes
 vers l'Edge Function Supabase `abk-management`. Un jeton serveur aléatoire
 authentifie ce relais ; seule son empreinte figure dans le bundle déployé.
