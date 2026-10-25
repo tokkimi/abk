@@ -1,7 +1,8 @@
+import { env } from "./runtime.mjs";
 import pg from "pg";
 let pool;
 export function database() {
-  if (!process.env.DATABASE_URL)
+  if (!env.DATABASE_URL)
     throw Object.assign(
       new Error(
         "Base de données non configurée. Aucun dossier n’est enregistré.",
@@ -9,7 +10,7 @@ export function database() {
       { status: 503 },
     );
   pool ??= new pg.Pool({
-    connectionString: process.env.DATABASE_URL,
+    connectionString: env.DATABASE_URL,
     max: 3,
     idleTimeoutMillis: 10000,
     connectionTimeoutMillis: 10000,

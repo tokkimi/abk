@@ -26,11 +26,17 @@ proposent aussi l'envoi direct dans la boîte interne ABK.
 ## Espace de gestion demandé
 
 Le périmètre attendu est décrit dans [docs/ESPACE-GESTION.md](docs/ESPACE-GESTION.md).
+L'instance réelle de gestion est activée sur Supabase et Vercel, avec connexion
+administrateur vérifiée. Les identifiants sont transmis séparément au propriétaire.
+Les détails du déploiement et les limites de l'envoi e-mail figurent dans
+[docs/INSTALLATION-ADMIN.md](docs/INSTALLATION-ADMIN.md).
+
 L'implémentation et son installation sont décrites dans
 [docs/INSTALLATION-ADMIN.md](docs/INSTALLATION-ADMIN.md). Les comptes de production
 utilisent Supabase Auth et PostgreSQL ; aucun compte partagé ni mot de passe
 administrateur n'est inclus. La branche `feature/abk-management` n'est pas fusionnée
-en production tant que l'infrastructure et les essais réels ne sont pas validés.
+en production sur le domaine public ; l'espace réel utilise actuellement son URL
+Vercel dédiée. La présentation `/demo/` reste distincte de l'espace réel `/gestion/`.
 
 ## Confidentialité et travail collaboratif
 

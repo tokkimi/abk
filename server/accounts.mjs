@@ -1,7 +1,8 @@
+import { env } from "./runtime.mjs";
 import { fail, passwordHash, passwordMatches } from "./security.mjs";
 function config() {
-  const url = process.env.SUPABASE_URL,
-    key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const url = env.SUPABASE_URL,
+    key = env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key)
     fail(
       503,
@@ -15,7 +16,7 @@ async function call(path, body, method = "POST") {
     method,
     headers: {
       apikey: key,
-      Authorization: `Bearer ${key}`,
+      ...(key.startsWith("eyJ") ? { Authorization: `Bearer ${key}` } : {}),
       "Content-Type": "application/json",
     },
     body: JSON.stringify(body),
@@ -29,7 +30,7 @@ async function call(path, body, method = "POST") {
   return data;
 }
 const localTest = () =>
-  process.env.NODE_ENV === "test" && process.env.AUTH_PROVIDER === "local-test";
+  env.NODE_ENV === "test" && env.AUTH_PROVIDER === "local-test";
 export async function verifyAccount(address, password, local) {
   if (localTest())
     return !!local && (await passwordMatches(password, local.password_hash));

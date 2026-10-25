@@ -184,7 +184,7 @@ function shell(content) {
           ? [["calendar", "Mon agenda"]]
           : []),
       ];
-  root.innerHTML = `<aside class="sidebar"><a class="brand" href="/">ABK<span>Bâti & Piscine</span></a><nav aria-label="Espace de gestion">${nav.map(([id, title]) => btn(title, "nav", id, view === id ? "active" : "")).join("")}</nav><footer><span>${e(state.user.name)}<br>${e(label(state.user.role))}</span><a href="/">Voir le site public</a>${btn("Déconnexion", "logout")}</footer></aside><main class="workspace"><div class="topbar"><span>ESPACE PRIVÉ · ${e(label(state.user.role))}</span><span>${e(state.user.name)} ${btn("Déconnexion", "logout", "", "link")}</span></div>${content}</main>`;
+  root.innerHTML = `<aside class="sidebar"><a class="brand" href="/">ABK<span>Bâti & Piscine</span></a><nav aria-label="Espace de gestion">${nav.map(([id, title]) => btn(title, "nav", id, view === id ? "active" : "")).join("")}</nav><footer><span>${e(state.user.name)}<br>${e(label(state.user.role))}</span><a href="/">Voir le site public</a>${btn("Changer mon mot de passe", "password-change")}${btn("Déconnexion", "logout")}</footer></aside><main class="workspace"><div class="topbar"><span>ESPACE PRIVÉ · ${e(label(state.user.role))}</span><span>${e(state.user.name)} ${btn("Mot de passe", "password-change", "", "link")} ${btn("Déconnexion", "logout", "", "link")}</span></div>${content}</main>`;
 }
 const heading = (title, subtitle = "", action = "") =>
   `<div class="heading"><div><div class="eyebrow">ABK · ${admin() ? "Gestion" : "Suivi de chantier"}</div><h1>${title}</h1><p>${subtitle}</p></div>${action}</div>`;
@@ -843,6 +843,19 @@ document.addEventListener("click", async (ev) => {
     } else if (action === "conversation-back") {
       conversationId = null;
       await loadInbox();
+    } else if (action === "password-change") {
+      modal(
+        "Changer mon mot de passe",
+        input("current_password", "Mot de passe actuel", "", "password", true) +
+          input(
+            "new_password",
+            "Nouveau mot de passe (12 caractères minimum)",
+            "",
+            "password",
+            true,
+          ),
+        (data) => api("password-change", data),
+      );
     } else if (action === "logout") {
       await api("logout", {});
       state = {};

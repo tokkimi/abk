@@ -1,5 +1,43 @@
 # Administration ABK
 
+## Instance activée le 25 octobre 2026
+
+Projet Supabase dédié : `abk-gestion` (`fggifjjivbwdxfzesjpq`), organisation
+choisie par le propriétaire, région Paris. Coût annoncé à la création : 0 USD/mois.
+Accès réel : `https://abk-git-feature-abk-management-tokkimis-projects.vercel.app/gestion/`.
+Le site public de production n'a pas été remplacé. Un administrateur Direction ABK
+a été provisionné dans Supabase Auth ; aucun mot de passe n'est stocké dans ce dépôt.
+Le compte peut changer son mot de passe depuis son espace ; les autres sessions
+sont alors révoquées. Les jeux d'essai ont été supprimés de la base réelle.
+
+Architecture déployée : Vercel sert le site et `/api/gestion` relaie les requêtes
+vers l'Edge Function Supabase `abk-management`. Un jeton serveur aléatoire
+authentifie ce relais ; seule son empreinte figure dans le bundle déployé.
+La fonction contrôle ensuite la session ABK, le rôle, l'origine et les permissions
+sur chaque dossier. Les identifiants PostgreSQL et les clés Supabase restent dans
+les variables privées fournies par Supabase aux fonctions, jamais dans le navigateur.
+Les tables sont accessibles uniquement côté serveur. `verify_jwt=false` concerne
+le contrôle du relais : la fonction effectue elle-même son authentification avant
+toute opération ; elle n'autorise pas les appels publics sans jeton.
+
+Les variables Vercel de cet environnement sont `ABK_BACKEND_URL`,
+`ABK_BACKEND_TOKEN` et `APP_ORIGIN`. Les secrets sont ajoutés par entrée standard,
+sans argument de commande. `/server/`, `/edge/`, `/scripts/` et `.env*` ne sont pas
+servis par le build. Le point de provisionnement `abk-initialize` a été fermé et
+redéployé avec vérification JWT après création du premier compte.
+
+Vérification réelle réalisée : connexion Supabase, cookie sécurisé et persistance
+de session, chantier/tâche/document et pièce jointe en base, invitation générée,
+écriture comptable, téléchargement PDF et déconnexion. Les tests de contrôle d'accès
+locaux restent nécessaires avant une évolution. Les e-mails automatiques ne sont
+pas configurés : les invitations sont partageables par copie du lien personnel.
+La réinitialisation par e-mail nécessite toujours un expéditeur vérifié.
+
+`edge/index.ts` est la source du relais. Le script `scripts/edge-bundle.mjs`
+remplace les marqueurs de configuration avec un fichier local privé ignoré par Git.
+Après une modification du serveur, redéployer cette fonction avant le frontend.
+Ne pas activer le fournisseur de mots de passe local en ligne.
+
 ## Présentation publique
 
 `/demo/` est un aperçu public en lecture seule pour présenter les écrans aux

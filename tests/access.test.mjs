@@ -429,6 +429,44 @@ test("accounting totals and PDF/CSV exports", async () => {
   assert.equal(pdf.code, 200);
   assert.match(pdf.data.subarray(0, 5).toString(), /%PDF-/);
 });
+test("password changes verify the current secret and revoke old sessions", async () => {
+  const bad = await request("password-change", {
+    current_password: "Wrong-password-2026",
+    new_password: "New-password-2026",
+  });
+  assert.equal(bad.code, 400);
+  const good = await request("password-change", {
+    current_password: "A-test-password-2026",
+    new_password: "New-password-2026",
+  });
+  assert.equal(good.code, 200);
+  assert.equal((await request("bootstrap")).code, 401);
+  assert.equal(
+    (
+      await request(
+        "login",
+        { email: "admin@abk.example", password: "A-test-password-2026" },
+        null,
+      )
+    ).code,
+    401,
+  );
+  assert.equal(
+    (
+      await request(
+        "login",
+        { email: "admin@abk.example", password: "New-password-2026" },
+        null,
+      )
+    ).code,
+    200,
+  );
+  const uid = ids.admin;
+  await db.query("UPDATE abk_users SET password_hash=$1 WHERE id=$2", [
+    await passwordHash("A-test-password-2026"),
+    uid,
+  ]);
+});
 test("login, logout and rate limits", async () => {
   const r = await request(
     "login",

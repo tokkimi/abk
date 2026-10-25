@@ -1,3 +1,5 @@
+import { env } from "./runtime.mjs";
+import { Buffer } from "node:buffer";
 import { randomUUID } from "node:crypto";
 import PDFDocument from "pdfkit";
 import { database, transaction } from "./database.mjs";
@@ -36,7 +38,7 @@ const audit = (db, u, action, entity) =>
     [randomUUID(), u?.id || null, action, entity],
   );
 const appOrigin = () =>
-  new URL(process.env.APP_ORIGIN || "http://localhost:3000").origin;
+  new URL(env.APP_ORIGIN || "http://localhost:3000").origin;
 const dateLabel = (v) =>
   v instanceof Date ? v.toISOString().slice(0, 10) : String(v).slice(0, 10);
 function projectData(u, p) {
@@ -138,18 +140,18 @@ async function session(db, user) {
   return { raw, csrf };
 }
 function sessionCookie(raw, clear = false) {
-  return `abk_session=${raw}; Path=/; HttpOnly; SameSite=Strict; ${process.env.NODE_ENV === "production" ? "Secure; " : ""}Max-Age=${clear ? 0 : 43200}`;
+  return `abk_session=${raw}; Path=/; HttpOnly; SameSite=Strict; ${env.NODE_ENV === "production" ? "Secure; " : ""}Max-Age=${clear ? 0 : 43200}`;
 }
 async function deliver(address, link) {
-  if (!process.env.RESEND_API_KEY || !process.env.EMAIL_FROM) return false;
+  if (!env.RESEND_API_KEY || !env.EMAIL_FROM) return false;
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+      Authorization: `Bearer ${env.RESEND_API_KEY}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      from: process.env.EMAIL_FROM,
+      from: env.EMAIL_FROM,
       to: [address],
       subject: "Votre accès privé ABK",
       text: `Votre lien personnel ABK, à usage unique (activation : 48 heures ; réinitialisation : 1 heure) :\n${link}\nSi vous n’êtes pas à l’origine de cette demande, ignorez ce message.`,
@@ -289,13 +291,13 @@ async function publicRequest(db, b, req) {
       ).split(",")[0],
     8,
   );
-  if (process.env.TURNSTILE_SECRET_KEY) {
+  if (env.TURNSTILE_SECRET_KEY) {
     const validation = await fetch(
       "https://challenges.cloudflare.com/turnstile/v0/siteverify",
       {
         method: "POST",
         body: new URLSearchParams({
-          secret: process.env.TURNSTILE_SECRET_KEY,
+          secret: env.TURNSTILE_SECRET_KEY,
           response: text(b.challenge, 3000),
         }),
       },
@@ -1096,13 +1098,11 @@ export function createHandler(getDB = database) {
       const db = getDB();
       if (action === "health") {
         await db.query("SELECT id FROM abk_users LIMIT 1");
-        return res
-          .status(200)
-          .json({
-            ready: true,
-            quotes: true,
-            challenge: !!process.env.TURNSTILE_SECRET_KEY,
-          });
+        return res.status(200).json({
+          ready: true,
+          quotes: true,
+          challenge: !!env.TURNSTILE_SECRET_KEY,
+        });
       }
       let result;
       const ip = String(
@@ -1126,6 +1126,9 @@ export function createHandler(getDB = database) {
           if (err.status === 503 || err.status === 429) throw err;
         }
         if (!user || !ok) fail(401, "Adresse ou mot de passe incorrect.");
+        await db.query("DELETE FROM abk_rate_limits WHERE key=$1", [
+          digest("login-account:" + address),
+        ]);
         const s = await session(db, user);
         res.setHeader("Set-Cookie", sessionCookie(s.raw));
         result = { ok: true };
@@ -1143,7 +1146,7 @@ export function createHandler(getDB = database) {
             "SELECT * FROM abk_users WHERE email=$1 AND active=true",
             [address],
           );
-        if (user && process.env.RESEND_API_KEY && process.env.EMAIL_FROM) {
+        if (user && env.RESEND_API_KEY && env.EMAIL_FROM) {
           const raw = token();
           await db.query(
             "INSERT INTO abk_invitations(id,email,name,role,token_hash,expires_at) VALUES($1,$2,$3,'reset',$4,now()+interval '1 hour')",
@@ -1170,6 +1173,29 @@ export function createHandler(getDB = database) {
             u.token_hash,
           ]);
           res.setHeader("Set-Cookie", sessionCookie("", true));
+          result = { ok: true };
+        } else if (action === "password-change") {
+          await rate(db, "password-change:" + u.id, 6);
+          if (
+            !(await verifyAccount(
+              u.email,
+              b.current_password,
+              await one(db, "SELECT * FROM abk_users WHERE id=$1", [u.id]),
+            ))
+          )
+            fail(400, "Votre mot de passe actuel est incorrect.");
+          await passwordHash(b.new_password);
+          const hash = await resetAccount(u.id, b.new_password);
+          const s = await transaction(db, async (tx) => {
+            await tx.query(
+              "UPDATE abk_users SET password_hash=$1 WHERE id=$2",
+              [hash, u.id],
+            );
+            await tx.query("DELETE FROM abk_sessions WHERE user_id=$1", [u.id]);
+            await audit(tx, u, "account.password_changed", u.id);
+            return session(tx, u);
+          });
+          res.setHeader("Set-Cookie", sessionCookie(s.raw));
           result = { ok: true };
         } else
           result =
@@ -1199,16 +1225,14 @@ export function createHandler(getDB = database) {
       const status =
         e.status || (["23505", "23503", "23514"].includes(e.code) ? 409 : 500);
       if (status === 500) console.error("ABK API error", e.code || e.name);
-      res
-        .status(status)
-        .json({
-          error:
-            status === 500
-              ? "Erreur serveur. Aucune action confirmée."
-              : status === 409
-                ? "Conflit de données : vérifiez la fiche liée."
-                : e.message,
-        });
+      res.status(status).json({
+        error:
+          status === 500
+            ? "Erreur serveur. Aucune action confirmée."
+            : status === 409
+              ? "Conflit de données : vérifiez la fiche liée."
+              : e.message,
+      });
     }
   };
 }
