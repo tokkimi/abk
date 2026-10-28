@@ -66,10 +66,20 @@ test("Vercel relay keeps only ABK cookies, enforces origin and forwards CSRF", a
     );
     assert.equal(bad.code, 403);
     assert.equal(calls, 1);
+    process.env.ABK_BACKEND_ORIGIN = 'https://old-backend-origin.example';
+    globalThis.fetch = async (url, options) => {
+      assert.equal(options.headers.origin, process.env.ABK_BACKEND_ORIGIN);
+      assert.equal(options.headers['x-csrf-token'], 'csrf');
+      return Response.json({link:'https://old-backend-origin.example/gestion/#invitation=example'});
+    };
+    const migrated = response();
+    await handler({url:'/api/gestion?action=invite',method:'POST',headers:{origin:'https://portal.example','x-csrf-token':'csrf'},body:{}},migrated);
+    assert.equal(migrated.data.link, 'https://portal.example/gestion/#invitation=example');
   } finally {
     globalThis.fetch = original;
     delete process.env.ABK_BACKEND_URL;
     delete process.env.ABK_BACKEND_TOKEN;
     delete process.env.APP_ORIGIN;
+    delete process.env.ABK_BACKEND_ORIGIN;
   }
 });

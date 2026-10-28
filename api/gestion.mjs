@@ -5,6 +5,7 @@ export default async function handler(req, res) {
   if (!process.env.ABK_BACKEND_URL) return localHandler(req, res);
   res.setHeader("Cache-Control", "no-store");
   const origin = new URL(process.env.APP_ORIGIN).origin;
+  const backendOrigin = new URL(process.env.ABK_BACKEND_ORIGIN || origin).origin;
   if (req.method === "POST" && req.headers.origin !== origin)
     return res.status(403).json({ error: "Origine non autorisée." });
   try {
@@ -16,6 +17,9 @@ export default async function handler(req, res) {
     };
     for (const key of ["origin", "x-csrf-token"])
       if (req.headers[key]) headers[key] = req.headers[key];
+    // The authenticated relay checks the public origin before adapting to the
+    // backend's separately configured origin. Never trust a caller-supplied host.
+    if (headers.origin) headers.origin = backendOrigin;
     const sessionCookie = (req.headers.cookie || "")
       .split(";")
       .map((s) => s.trim())
@@ -49,9 +53,14 @@ export default async function handler(req, res) {
       .getSetCookie()
       .filter((value) => value.startsWith("abk_session="));
     if (sessionCookies.length) res.setHeader("Set-Cookie", sessionCookies);
-    return res
-      .status(result.status)
-      .send(Buffer.from(await result.arrayBuffer()));
+    if (result.headers.get("content-type")?.includes("application/json")) {
+      const adapt = value => typeof value === "string"
+        ? value.replaceAll(backendOrigin + "/gestion/", origin + "/gestion/")
+        : Array.isArray(value) ? value.map(adapt)
+        : value && typeof value === "object" ? Object.fromEntries(Object.entries(value).map(([key,item]) => [key,adapt(item)])) : value;
+      return res.status(result.status).json(adapt(await result.json()));
+    }
+    return res.status(result.status).send(Buffer.from(await result.arrayBuffer()));
   } catch {
     return res.status(503).json({
       error:

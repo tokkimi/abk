@@ -3,4 +3,4 @@ Allow: /
 Disallow: /gestion/
 Disallow: /demo/
 Disallow: /api/
-Sitemap: https://abk-ten.vercel.app/sitemap.xml
+Sitemap: https://www.abk-bati.com/sitemap.xml
