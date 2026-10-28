@@ -169,6 +169,7 @@ function shell(content) {
     ? [
         ["dashboard", "Vue d’ensemble"],
         ["requests", "Demandes"],
+        ["partnerships", "Partenariats & affiliation"],
         ["messages", "Messagerie"],
         ["clients", "Clients"],
         ["projects", "Chantiers"],
@@ -269,7 +270,8 @@ function render() {
         "Demandes & messagerie.",
         "Les demandes reçues sont regroupées ici avant la création d’un chantier.",
       ) +
-      `<label class="search">Rechercher une demande<input id="request-search" type="search" placeholder="Nom, e-mail, expertise…"></label><div id="request-list">${requestRows(state.requests)}</div>`;
+      `<label class="search">Rechercher une demande<input id="request-search" type="search" placeholder="Nom, e-mail, expertise…"></label><div id="request-list">${requestRows(state.requests.filter(r=>!isPartnership(r)))}</div>`;
+  if(view === "partnerships") content=heading('Partenariats & affiliation.','Propositions professionnelles, apport d’affaires, affiliation et collaborations.')+`<label class="search">Rechercher une proposition<input id="request-search" type="search" placeholder="Nom, société, proposition…"></label><div id="request-list">${requestRows(state.requests.filter(isPartnership))}</div>`;
   if (view === "people")
     content =
       heading(
@@ -320,12 +322,13 @@ function render() {
   }
   shell(content || dashboard());
 }
+const isPartnership=r=>String(r.source||'').startsWith('partnership:');
 const requestRows = (rows) =>
   table(
     ["Demande", "Expertise", "Date", "État", ""],
     rows.map((r) => [
       `<b>${e(r.name)}</b><p>${e(r.email)}</p>`,
-      e(label(r.category)),
+      e(isPartnership(r)?"Partenariat / affiliation":label(r.category)),
       day(r.created_at),
       badge(r.status),
       btn("Consulter", "request", r.id),
@@ -649,12 +652,12 @@ async function requestOpen(id) {
   const r = state.requests.find((x) => x.id === id);
   const thread = await api("request-thread", null, { id });
   document.querySelector("#modal-content").innerHTML =
-    `<h2>${e(r.name)}</h2><p>${e(r.email)} · ${e(r.phone)}</p><p>${badge(r.category)} ${badge(r.status)}</p><div class="pre panel">${e(r.content)}</div><form id="request-status">${select(
+    `<h2>${e(r.name)}</h2><p>${e(r.email)} · ${e(r.phone)}</p><p>${isPartnership(r)?'<span class="badge">Partenariat / affiliation</span>':badge(r.category)} ${badge(r.status)}</p><div class="pre panel">${e(r.content)}</div><form id="request-status">${select(
       "status",
       "État",
       ["new", "contacted", "qualified", "closed"].map((s) => [s, label(s)]),
       r.status,
-    )}<button>Mettre à jour</button></form><div class="actions">${r.project_id ? btn("Ouvrir le projet", "project", r.project_id) : btn("Créer un projet depuis la demande", "convert", r.id, "primary")}</div><h3>Notes et messagerie internes</h3>${thread.messages.map((m) => `<article class="message"><b>${e(m.author_name)}</b><p class="pre">${e(m.body)}</p></article>`).join("")}<form id="request-message">${area("body", "Ajouter une note interne")}<button>Enregistrer la note</button></form><p class="error" id="request-error"></p>`;
+    )}<button>Mettre à jour</button></form><div class="actions">${isPartnership(r)?'':r.project_id ? btn("Ouvrir le projet", "project", r.project_id) : btn("Créer un projet depuis la demande", "convert", r.id, "primary")}</div><h3>Notes et messagerie internes</h3>${thread.messages.map((m) => `<article class="message"><b>${e(m.author_name)}</b><p class="pre">${e(m.body)}</p></article>`).join("")}<form id="request-message">${area("body", "Ajouter une note interne")}<button>Enregistrer la note</button></form><p class="error" id="request-error"></p>`;
   dialog.showModal();
   document.querySelector("#request-status").onsubmit = async (ev) => {
     ev.preventDefault();
@@ -984,8 +987,8 @@ document.addEventListener("input", (ev) => {
   if (ev.target.id === "request-search") {
     const q = ev.target.value.toLowerCase();
     document.querySelector("#request-list").innerHTML = requestRows(
-      state.requests.filter((r) =>
-        `${r.name} ${r.email} ${label(r.category)} ${label(r.status)}`
+      state.requests.filter(r=>view==='partnerships'?isPartnership(r):!isPartnership(r)).filter((r) =>
+        `${r.name} ${r.email} ${r.content} ${label(r.category)} ${label(r.status)}`
           .toLowerCase()
           .includes(q),
       ),

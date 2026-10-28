@@ -5,7 +5,7 @@ const root = resolve(import.meta.dirname, ".."),
 await rm(out, { recursive: true, force: true });
 await mkdir(out, { recursive: true });
 for (const name of await readdir(root))
-  if (/\.(html|css|js)$/.test(name))
+  if (/\.(html|css|js)$/.test(name)||['robots.txt','sitemap.xml'].includes(name))
     await cp(resolve(root, name), resolve(out, name));
 for (const name of ["public", "gestion", "demo"])
   await cp(resolve(root, name), resolve(out, name), { recursive: true });
