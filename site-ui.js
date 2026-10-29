@@ -21,6 +21,14 @@
     const actions = document.createElement('div'); actions.className = 'header-actions';
     actions.innerHTML = '<a href="connexion.html" aria-label="Connexion à votre espace" title="Connexion"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="3.5"/><path d="M4.5 21v-2a7.5 7.5 0 0 1 15 0v2"/></svg></a><span role="img" aria-label="Instagram"><img src="public/brands/instagram.svg" alt="" width="19" height="19"/></span><span role="img" aria-label="Facebook"><img src="public/brands/facebook.png" alt="" width="19" height="19"/></span>';
     nav.insertBefore(actions, nav.querySelector(':scope > button'));
+    const contactButton=document.createElement('button');
+    contactButton.type='button';contactButton.className='header-contact-button';contactButton.textContent='Contact';
+    contactButton.setAttribute('aria-haspopup','dialog');
+    const contactDialog=document.createElement('dialog');contactDialog.className='header-contact-dialog';contactDialog.setAttribute('aria-labelledby','header-contact-title');
+    contactDialog.innerHTML='<button class="header-contact-close" type="button" aria-label="Fermer les coordonnées">×</button><p class="eyebrow">ABK Bâti & Piscine</p><h2 id="header-contact-title">Contactez notre équipe.</h2><a href="tel:+33546057292"><span>Téléphone</span><strong>05 46 05 72 92</strong></a><a href="mailto:info@abk-piscine.fr"><span>E-mail</span><strong>info@abk-piscine.fr</strong></a><p class="header-contact-address">62 ter rue François Arago<br>17200 Royan</p>';
+    document.body.append(contactDialog);actions.prepend(contactButton);
+    contactButton.addEventListener('click',()=>contactDialog.showModal());
+    contactDialog.querySelector('.header-contact-close').addEventListener('click',()=>contactDialog.close());
     nav.querySelector('.site-menu-toggle')?.addEventListener('click', event => {
       const open = menu.classList.toggle('open'); event.currentTarget.setAttribute('aria-expanded', String(open));
     });

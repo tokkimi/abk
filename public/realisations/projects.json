@@ -211,6 +211,44 @@
         "src": "public/realisations/videos/espace-aquatique.mp4",
         "thumbnail": "public/realisations/espace-aquatique/01-square.webp",
         "alt": "Vidéo du même espace aquatique collectif"
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/espace-aquatique/oct-29-01.webp",
+        "thumbnail": "public/realisations/espace-aquatique/oct-29-01-square.webp",
+        "alt": "Le même espace aquatique, pendant les travaux — vue 1",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/espace-aquatique/oct-29-02.webp",
+        "thumbnail": "public/realisations/espace-aquatique/oct-29-02-square.webp",
+        "alt": "Le même espace aquatique, pendant les travaux — vue 2",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/espace-aquatique/oct-29-03.webp",
+        "thumbnail": "public/realisations/espace-aquatique/oct-29-03-square.webp",
+        "alt": "Le même espace aquatique, pendant les travaux — vue 3",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/espace-aquatique/oct-29-04.webp",
+        "thumbnail": "public/realisations/espace-aquatique/oct-29-04-square.webp",
+        "alt": "Le même espace aquatique, pendant les travaux — vue 4",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "type": "video",
+        "src": "public/realisations/videos/espace-aquatique-octobre.mp4",
+        "thumbnail": "public/realisations/videos/espace-aquatique-octobre.webp",
+        "alt": "Le même espace aquatique après sa mise en eau"
       }
     ]
   },
@@ -378,6 +416,157 @@
         "alt": "Bassin dans un jardin arboré — vue 1",
         "width": 1005,
         "height": 1587
+      }
+    ]
+  },
+  {
+    "id": "transformation-bassin",
+    "title": "Transformation d’un bassin",
+    "description": "Plusieurs vues du même bassin en cours de reconfiguration.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/transformation-bassin/oct-29-01.webp",
+        "thumbnail": "public/realisations/transformation-bassin/oct-29-01-square.webp",
+        "alt": "Transformation d’un bassin — vue 1",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/transformation-bassin/oct-29-02.webp",
+        "thumbnail": "public/realisations/transformation-bassin/oct-29-02-square.webp",
+        "alt": "Transformation d’un bassin — vue 2",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/transformation-bassin/oct-29-03.webp",
+        "thumbnail": "public/realisations/transformation-bassin/oct-29-03-square.webp",
+        "alt": "Transformation d’un bassin — vue 3",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/transformation-bassin/oct-29-04.webp",
+        "thumbnail": "public/realisations/transformation-bassin/oct-29-04-square.webp",
+        "alt": "Transformation d’un bassin — vue 4",
+        "width": 1600,
+        "height": 1200
+      }
+    ]
+  },
+  {
+    "id": "inspiration-jardin",
+    "title": "Inspiration : un bassin dans le jardin",
+    "description": "Un visuel d’inspiration fourni, présenté séparément des chantiers.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/inspiration-jardin/oct-29-01.webp",
+        "thumbnail": "public/realisations/inspiration-jardin/oct-29-01-square.webp",
+        "alt": "Inspiration : un bassin dans le jardin — vue 1",
+        "width": 1600,
+        "height": 855
+      }
+    ]
+  },
+  {
+    "id": "piscine-interieure",
+    "title": "Un bassin à l’intérieur",
+    "description": "Marches arrondies et mise en eau dans un espace intérieur.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/piscine-interieure/oct-29-01.webp",
+        "thumbnail": "public/realisations/piscine-interieure/oct-29-01-square.webp",
+        "alt": "Un bassin à l’intérieur — vue 1",
+        "width": 1200,
+        "height": 1600
+      }
+    ]
+  },
+  {
+    "id": "terrassement-local",
+    "title": "Les premières étapes du bassin",
+    "description": "Terrassement et préparation du terrain autour du local technique.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/terrassement-local/oct-29-01.webp",
+        "thumbnail": "public/realisations/terrassement-local/oct-29-01-square.webp",
+        "alt": "Les premières étapes du bassin — vue 1",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/terrassement-local/oct-29-02.webp",
+        "thumbnail": "public/realisations/terrassement-local/oct-29-02-square.webp",
+        "alt": "Les premières étapes du bassin — vue 2",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/terrassement-local/oct-29-03.webp",
+        "thumbnail": "public/realisations/terrassement-local/oct-29-03-square.webp",
+        "alt": "Les premières étapes du bassin — vue 3",
+        "width": 1600,
+        "height": 1200
+      }
+    ]
+  },
+  {
+    "id": "terrasse-couverte",
+    "title": "Bassin et terrasse couverte",
+    "description": "Mise en eau et abords en bois sous une terrasse couverte.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/terrasse-couverte/oct-29-01.webp",
+        "thumbnail": "public/realisations/terrasse-couverte/oct-29-01-square.webp",
+        "alt": "Bassin et terrasse couverte — vue 1",
+        "width": 1200,
+        "height": 1600
+      }
+    ]
+  },
+  {
+    "id": "bassin-en-construction",
+    "title": "Un bassin en construction",
+    "description": "Structure, escalier et réseaux du même chantier.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/bassin-en-construction/oct-29-01.webp",
+        "thumbnail": "public/realisations/bassin-en-construction/oct-29-01-square.webp",
+        "alt": "Un bassin en construction — vue 1",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/bassin-en-construction/oct-29-02.webp",
+        "thumbnail": "public/realisations/bassin-en-construction/oct-29-02-square.webp",
+        "alt": "Un bassin en construction — vue 2",
+        "width": 1600,
+        "height": 1200
+      }
+    ]
+  },
+  {
+    "id": "renovation-video",
+    "title": "Un bassin en rénovation",
+    "description": "Vidéo fournie du chantier et des abords. La définition du fichier source est limitée.",
+    "media": [
+      {
+        "type": "video",
+        "src": "public/realisations/videos/renovation-terrasse-video.mp4",
+        "thumbnail": "public/realisations/videos/renovation-terrasse-video.webp",
+        "alt": "Vidéo d’un bassin et de ses abords pendant les travaux"
       }
     ]
   }
