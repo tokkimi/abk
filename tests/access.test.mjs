@@ -467,7 +467,7 @@ test("password changes verify the current secret and revoke old sessions", async
     uid,
   ]);
 });
-test("login, logout and rate limits", async () => {
+test("login, logout and no lockout after wrong passwords", async () => {
   const r = await request(
     "login",
     { email: "admin@abk.example", password: "A-test-password-2026" },
@@ -490,20 +490,25 @@ test("login, logout and rate limits", async () => {
     (await request("bootstrap", null, "admin", {}, { cookie })).code,
     401,
   );
-  for (let n = 0; n < 9; n++)
-    await request(
-      "login",
-      { email: "absent@abk.example", password: "Wrong-password-2026" },
-      null,
+  for (let n = 0; n < 10; n++)
+    assert.equal(
+      (
+        await request(
+          "login",
+          { email: "admin@abk.example", password: "Wrong-password-2026" },
+          null,
+        )
+      ).code,
+      401,
     );
   assert.equal(
     (
       await request(
         "login",
-        { email: "absent@abk.example", password: "Wrong-password-2026" },
+        { email: "admin@abk.example", password: "A-test-password-2026" },
         null,
       )
     ).code,
-    429,
+    200,
   );
 });

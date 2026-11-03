@@ -1112,8 +1112,6 @@ export function createHandler(getDB = database) {
       ).split(",")[0];
       if (action === "login") {
         const address = email(b.email);
-        await rate(db, "login-ip:" + ip, 25);
-        await rate(db, "login-account:" + address, 8);
         const user = await one(
           db,
           "SELECT * FROM abk_users WHERE email=$1 AND active=true",
@@ -1126,9 +1124,6 @@ export function createHandler(getDB = database) {
           if (err.status === 503 || err.status === 429) throw err;
         }
         if (!user || !ok) fail(401, "Adresse ou mot de passe incorrect.");
-        await db.query("DELETE FROM abk_rate_limits WHERE key=$1", [
-          digest("login-account:" + address),
-        ]);
         const s = await session(db, user);
         res.setHeader("Set-Cookie", sessionCookie(s.raw));
         result = { ok: true };
