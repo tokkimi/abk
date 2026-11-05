@@ -1,0 +1,573 @@
+[
+  {
+    "id": "terrasse-bois",
+    "title": "Piscine et terrasse bois",
+    "description": "Couverture intégrée et abords en bois.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/terrasse-bois/01.webp",
+        "thumbnail": "public/realisations/terrasse-bois/01-square.webp",
+        "alt": "Piscine et terrasse bois — vue 1",
+        "width": 1206,
+        "height": 1409
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/terrasse-bois/02.webp",
+        "thumbnail": "public/realisations/terrasse-bois/02-square.webp",
+        "alt": "Piscine et terrasse bois — vue 2",
+        "width": 733,
+        "height": 978
+      }
+    ]
+  },
+  {
+    "id": "cour-pierre",
+    "title": "Un bassin dans la cour",
+    "description": "Bassin rectangulaire et terrasse en pierre.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/cour-pierre/01.webp",
+        "thumbnail": "public/realisations/cour-pierre/01-square.webp",
+        "alt": "Un bassin dans la cour — vue 1",
+        "width": 1206,
+        "height": 1487
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/cour-pierre/02.webp",
+        "thumbnail": "public/realisations/cour-pierre/02-square.webp",
+        "alt": "Un bassin dans la cour — vue 2",
+        "width": 733,
+        "height": 977
+      }
+    ]
+  },
+  {
+    "id": "vue-mer",
+    "title": "Une piscine ouverte sur le paysage",
+    "description": "Les différentes vues d’un même bassin et de sa terrasse.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/vue-mer/01.webp",
+        "thumbnail": "public/realisations/vue-mer/01-square.webp",
+        "alt": "Une piscine ouverte sur le paysage — vue 1",
+        "width": 1191,
+        "height": 1587
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/vue-mer/02.webp",
+        "thumbnail": "public/realisations/vue-mer/02-square.webp",
+        "alt": "Une piscine ouverte sur le paysage — vue 2",
+        "width": 733,
+        "height": 977
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/vue-mer/03.webp",
+        "thumbnail": "public/realisations/vue-mer/03-square.webp",
+        "alt": "Une piscine ouverte sur le paysage — vue 3",
+        "width": 733,
+        "height": 977
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/vue-mer/04.webp",
+        "thumbnail": "public/realisations/vue-mer/04-square.webp",
+        "alt": "Une piscine ouverte sur le paysage — vue 4",
+        "width": 733,
+        "height": 977
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/vue-mer/05.webp",
+        "thumbnail": "public/realisations/vue-mer/05-square.webp",
+        "alt": "Une piscine ouverte sur le paysage — vue 5",
+        "width": 733,
+        "height": 549
+      }
+    ]
+  },
+  {
+    "id": "jardin-couverture",
+    "title": "Bassin et jardin",
+    "description": "Couverture et terrasse autour d’une piscine de jardin.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/jardin-couverture/01.webp",
+        "thumbnail": "public/realisations/jardin-couverture/01-square.webp",
+        "alt": "Bassin et jardin — vue 1",
+        "width": 736,
+        "height": 551
+      }
+    ]
+  },
+  {
+    "id": "maison-contemporaine",
+    "title": "Lignes contemporaines",
+    "description": "Bassin au pied d’une maison aux façades claires.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/maison-contemporaine/01.webp",
+        "thumbnail": "public/realisations/maison-contemporaine/01-square.webp",
+        "alt": "Lignes contemporaines — vue 1",
+        "width": 733,
+        "height": 549
+      }
+    ]
+  },
+  {
+    "id": "renovation-marches",
+    "title": "La rénovation, étape par étape",
+    "description": "Préparation du support et travail autour des marches du bassin.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/renovation-marches/01.webp",
+        "thumbnail": "public/realisations/renovation-marches/01-square.webp",
+        "alt": "La rénovation, étape par étape — vue 1",
+        "width": 360,
+        "height": 480
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/renovation-marches/02.webp",
+        "thumbnail": "public/realisations/renovation-marches/02-square.webp",
+        "alt": "La rénovation, étape par étape — vue 2",
+        "width": 360,
+        "height": 480
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/renovation-marches/03.webp",
+        "thumbnail": "public/realisations/renovation-marches/03-square.webp",
+        "alt": "La rénovation, étape par étape — vue 3",
+        "width": 360,
+        "height": 480
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/renovation-marches/04.webp",
+        "thumbnail": "public/realisations/renovation-marches/04-square.webp",
+        "alt": "La rénovation, étape par étape — vue 4",
+        "width": 360,
+        "height": 480
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/renovation-marches/05.webp",
+        "thumbnail": "public/realisations/renovation-marches/05-square.webp",
+        "alt": "La rénovation, étape par étape — vue 5",
+        "width": 360,
+        "height": 480
+      }
+    ]
+  },
+  {
+    "id": "espace-aquatique",
+    "title": "Un espace aquatique collectif",
+    "description": "Bassin, zone ludique et abords du même espace aquatique.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/espace-aquatique/01.webp",
+        "thumbnail": "public/realisations/espace-aquatique/01-square.webp",
+        "alt": "Un espace aquatique collectif — vue 1",
+        "width": 1436,
+        "height": 1077
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/espace-aquatique/02.webp",
+        "thumbnail": "public/realisations/espace-aquatique/02-square.webp",
+        "alt": "Un espace aquatique collectif — vue 2",
+        "width": 1190,
+        "height": 1587
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/espace-aquatique/03.webp",
+        "thumbnail": "public/realisations/espace-aquatique/03-square.webp",
+        "alt": "Un espace aquatique collectif — vue 3",
+        "width": 1436,
+        "height": 1077
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/espace-aquatique/04.webp",
+        "thumbnail": "public/realisations/espace-aquatique/04-square.webp",
+        "alt": "Un espace aquatique collectif — vue 4",
+        "width": 1436,
+        "height": 1077
+      },
+      {
+        "type": "video",
+        "src": "public/realisations/videos/espace-aquatique.mp4",
+        "thumbnail": "public/realisations/espace-aquatique/01-square.webp",
+        "alt": "Vidéo du même espace aquatique collectif"
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/espace-aquatique/oct-29-01.webp",
+        "thumbnail": "public/realisations/espace-aquatique/oct-29-01-square.webp",
+        "alt": "Le même espace aquatique, pendant les travaux — vue 1",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/espace-aquatique/oct-29-02.webp",
+        "thumbnail": "public/realisations/espace-aquatique/oct-29-02-square.webp",
+        "alt": "Le même espace aquatique, pendant les travaux — vue 2",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/espace-aquatique/oct-29-03.webp",
+        "thumbnail": "public/realisations/espace-aquatique/oct-29-03-square.webp",
+        "alt": "Le même espace aquatique, pendant les travaux — vue 3",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/espace-aquatique/oct-29-04.webp",
+        "thumbnail": "public/realisations/espace-aquatique/oct-29-04-square.webp",
+        "alt": "Le même espace aquatique, pendant les travaux — vue 4",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "type": "video",
+        "src": "public/realisations/videos/espace-aquatique-octobre.mp4",
+        "thumbnail": "public/realisations/videos/espace-aquatique-octobre.webp",
+        "alt": "Le même espace aquatique après sa mise en eau"
+      }
+    ]
+  },
+  {
+    "id": "volet-jardin",
+    "title": "Une couverture au fil de l’eau",
+    "description": "Le même bassin, couverture ouverte puis fermée.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/volet-jardin/01.webp",
+        "thumbnail": "public/realisations/volet-jardin/01-square.webp",
+        "alt": "Une couverture au fil de l’eau — vue 1",
+        "width": 1206,
+        "height": 880
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/volet-jardin/02.webp",
+        "thumbnail": "public/realisations/volet-jardin/02-square.webp",
+        "alt": "Une couverture au fil de l’eau — vue 2",
+        "width": 1206,
+        "height": 889
+      }
+    ]
+  },
+  {
+    "id": "vue-hauteur",
+    "title": "Piscine et aménagement du jardin",
+    "description": "Une vue d’ensemble sur le bassin et ses plages.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/vue-hauteur/01.webp",
+        "thumbnail": "public/realisations/vue-hauteur/01-square.webp",
+        "alt": "Piscine et aménagement du jardin — vue 1",
+        "width": 1206,
+        "height": 672
+      }
+    ]
+  },
+  {
+    "id": "membrane-bleue",
+    "title": "Une nouvelle finition pour le bassin",
+    "description": "Pose d’un revêtement à motif bleu.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/membrane-bleue/01.webp",
+        "thumbnail": "public/realisations/membrane-bleue/01-square.webp",
+        "alt": "Une nouvelle finition pour le bassin — vue 1",
+        "width": 360,
+        "height": 480
+      }
+    ]
+  },
+  {
+    "id": "jardin-mediterraneen",
+    "title": "Une piscine dans son jardin",
+    "description": "Mise en eau et vues du bassin avec ses abords paysagers.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/jardin-mediterraneen/01.webp",
+        "thumbnail": "public/realisations/jardin-mediterraneen/01-square.webp",
+        "alt": "Une piscine dans son jardin — vue 1",
+        "width": 1190,
+        "height": 1587
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/jardin-mediterraneen/02.webp",
+        "thumbnail": "public/realisations/jardin-mediterraneen/02-square.webp",
+        "alt": "Une piscine dans son jardin — vue 2",
+        "width": 1190,
+        "height": 1587
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/jardin-mediterraneen/03.webp",
+        "thumbnail": "public/realisations/jardin-mediterraneen/03-square.webp",
+        "alt": "Une piscine dans son jardin — vue 3",
+        "width": 1190,
+        "height": 1587
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/jardin-mediterraneen/04.webp",
+        "thumbnail": "public/realisations/jardin-mediterraneen/04-square.webp",
+        "alt": "Une piscine dans son jardin — vue 4",
+        "width": 960,
+        "height": 1280
+      }
+    ]
+  },
+  {
+    "id": "maison-bois",
+    "title": "Le bois et l’eau",
+    "description": "Piscine, terrasse bois et maison tournées vers le jardin.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/maison-bois/01.webp",
+        "thumbnail": "public/realisations/maison-bois/01-square.webp",
+        "alt": "Le bois et l’eau — vue 1",
+        "width": 1206,
+        "height": 699
+      }
+    ]
+  },
+  {
+    "id": "bassin-compact",
+    "title": "Une piscine dans un espace compact",
+    "description": "Bassin rectangulaire et couverture entre la maison et la clôture.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/bassin-compact/01.webp",
+        "thumbnail": "public/realisations/bassin-compact/01-square.webp",
+        "alt": "Une piscine dans un espace compact — vue 1",
+        "width": 1206,
+        "height": 1493
+      }
+    ]
+  },
+  {
+    "id": "espace-detente",
+    "title": "Un espace de détente",
+    "description": "Détail d’un bassin avec marches et assises.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/espace-detente/01.webp",
+        "thumbnail": "public/realisations/espace-detente/01-square.webp",
+        "alt": "Un espace de détente — vue 1",
+        "width": 1190,
+        "height": 1587
+      }
+    ]
+  },
+  {
+    "id": "terrasse-minerale",
+    "title": "Une terrasse autour du bassin",
+    "description": "Une piscine et ses abords minéraux.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/terrasse-minerale/01.webp",
+        "thumbnail": "public/realisations/terrasse-minerale/01-square.webp",
+        "alt": "Une terrasse autour du bassin — vue 1",
+        "width": 1436,
+        "height": 1077
+      }
+    ]
+  },
+  {
+    "id": "jardin-arbore",
+    "title": "Bassin dans un jardin arboré",
+    "description": "Un bassin rectangulaire bordé de larges dalles.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/jardin-arbore/01.webp",
+        "thumbnail": "public/realisations/jardin-arbore/01-square.webp",
+        "alt": "Bassin dans un jardin arboré — vue 1",
+        "width": 1005,
+        "height": 1587
+      }
+    ]
+  },
+  {
+    "id": "transformation-bassin",
+    "title": "Transformation d’un bassin",
+    "description": "Plusieurs vues du même bassin en cours de reconfiguration.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/transformation-bassin/oct-29-01.webp",
+        "thumbnail": "public/realisations/transformation-bassin/oct-29-01-square.webp",
+        "alt": "Transformation d’un bassin — vue 1",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/transformation-bassin/oct-29-02.webp",
+        "thumbnail": "public/realisations/transformation-bassin/oct-29-02-square.webp",
+        "alt": "Transformation d’un bassin — vue 2",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/transformation-bassin/oct-29-03.webp",
+        "thumbnail": "public/realisations/transformation-bassin/oct-29-03-square.webp",
+        "alt": "Transformation d’un bassin — vue 3",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/transformation-bassin/oct-29-04.webp",
+        "thumbnail": "public/realisations/transformation-bassin/oct-29-04-square.webp",
+        "alt": "Transformation d’un bassin — vue 4",
+        "width": 1600,
+        "height": 1200
+      }
+    ]
+  },
+  {
+    "id": "inspiration-jardin",
+    "title": "Inspiration : un bassin dans le jardin",
+    "description": "Un visuel d’inspiration fourni, présenté séparément des chantiers.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/inspiration-jardin/oct-29-01.webp",
+        "thumbnail": "public/realisations/inspiration-jardin/oct-29-01-square.webp",
+        "alt": "Inspiration : un bassin dans le jardin — vue 1",
+        "width": 1600,
+        "height": 855
+      }
+    ]
+  },
+  {
+    "id": "piscine-interieure",
+    "title": "Un bassin à l’intérieur",
+    "description": "Marches arrondies et mise en eau dans un espace intérieur.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/piscine-interieure/oct-29-01.webp",
+        "thumbnail": "public/realisations/piscine-interieure/oct-29-01-square.webp",
+        "alt": "Un bassin à l’intérieur — vue 1",
+        "width": 1200,
+        "height": 1600
+      }
+    ]
+  },
+  {
+    "id": "terrassement-local",
+    "title": "Les premières étapes du bassin",
+    "description": "Terrassement et préparation du terrain autour du local technique.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/terrassement-local/oct-29-01.webp",
+        "thumbnail": "public/realisations/terrassement-local/oct-29-01-square.webp",
+        "alt": "Les premières étapes du bassin — vue 1",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/terrassement-local/oct-29-02.webp",
+        "thumbnail": "public/realisations/terrassement-local/oct-29-02-square.webp",
+        "alt": "Les premières étapes du bassin — vue 2",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/terrassement-local/oct-29-03.webp",
+        "thumbnail": "public/realisations/terrassement-local/oct-29-03-square.webp",
+        "alt": "Les premières étapes du bassin — vue 3",
+        "width": 1600,
+        "height": 1200
+      }
+    ]
+  },
+  {
+    "id": "terrasse-couverte",
+    "title": "Bassin et terrasse couverte",
+    "description": "Mise en eau et abords en bois sous une terrasse couverte.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/terrasse-couverte/oct-29-01.webp",
+        "thumbnail": "public/realisations/terrasse-couverte/oct-29-01-square.webp",
+        "alt": "Bassin et terrasse couverte — vue 1",
+        "width": 1200,
+        "height": 1600
+      }
+    ]
+  },
+  {
+    "id": "bassin-en-construction",
+    "title": "Un bassin en construction",
+    "description": "Structure, escalier et réseaux du même chantier.",
+    "media": [
+      {
+        "type": "image",
+        "src": "public/realisations/bassin-en-construction/oct-29-01.webp",
+        "thumbnail": "public/realisations/bassin-en-construction/oct-29-01-square.webp",
+        "alt": "Un bassin en construction — vue 1",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "type": "image",
+        "src": "public/realisations/bassin-en-construction/oct-29-02.webp",
+        "thumbnail": "public/realisations/bassin-en-construction/oct-29-02-square.webp",
+        "alt": "Un bassin en construction — vue 2",
+        "width": 1600,
+        "height": 1200
+      }
+    ]
+  },
+  {
+    "id": "renovation-video",
+    "title": "Un bassin en rénovation",
+    "description": "Vidéo fournie du chantier et des abords. La définition du fichier source est limitée.",
+    "media": [
+      {
+        "type": "video",
+        "src": "public/realisations/videos/renovation-terrasse-video.mp4",
+        "thumbnail": "public/realisations/videos/renovation-terrasse-video.webp",
+        "alt": "Vidéo d’un bassin et de ses abords pendant les travaux"
+      }
+    ]
+  }
+]
