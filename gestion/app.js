@@ -176,7 +176,6 @@ function shell(content) {
         ["people", "Accès & partenaires"],
         ["finance", "Comptabilité"],
         ["audit", "Journal d’activité"],
-        ["settings", "Paramètres"],
       ]
     : [
         ["dashboard", "Vue d’ensemble"],
@@ -185,9 +184,8 @@ function shell(content) {
         ...(state.user.role === "contractor"
           ? [["calendar", "Mon agenda"]]
           : []),
-        ["settings", "Paramètres"],
       ];
-  root.innerHTML = `<aside class="sidebar"><a class="brand" href="/">ABK<span>Bâti & Piscine</span></a><nav aria-label="Espace de gestion">${nav.map(([id, title]) => btn(title, "nav", id, view === id ? "active" : "")).join("")}</nav><footer><span>${e(state.user.name)}<br>${e(label(state.user.role))}</span><a href="/">Voir le site public</a>${btn("Changer mon mot de passe", "password-change")}${btn("Déconnexion", "logout")}</footer></aside><main class="workspace"><div class="topbar"><span>ESPACE PRIVÉ · ${e(label(state.user.role))}</span><span>${e(state.user.name)} ${btn("Paramètres", "nav", "settings", "link")} ${btn("Déconnexion", "logout", "", "link")}</span></div>${content}</main>`;
+  root.innerHTML = `<aside class="sidebar"><a class="brand" href="/">ABK<span>Bâti & Piscine</span></a><nav aria-label="Espace de gestion">${nav.map(([id, title]) => btn(title, "nav", id, view === id ? "active" : "")).join("")}</nav><footer><span>${e(state.user.name)}<br>${e(label(state.user.role))}</span><a href="/">Voir le site public</a>${btn("Changer mon mot de passe", "password-change")}${btn("Déconnexion", "logout")}</footer></aside><main class="workspace"><div class="topbar"><span>ESPACE PRIVÉ · ${e(label(state.user.role))}</span><span>${e(state.user.name)} ${btn("Mot de passe", "password-change", "", "link")} ${btn("Déconnexion", "logout", "", "link")}</span></div>${content}</main>`;
 }
 const heading = (title, subtitle = "", action = "") =>
   `<div class="heading"><div><div class="eyebrow">ABK · ${admin() ? "Gestion" : "Suivi de chantier"}</div><h1>${title}</h1><p>${subtitle}</p></div>${action}</div>`;
@@ -223,25 +221,6 @@ function dashboard() {
     )}</section>`
   );
 }
-const passwordField = (name, title, autocomplete) =>
-  `<label>${title}<input name="${name}" type="password" required minlength="12" maxlength="128" autocomplete="${autocomplete}"></label>`;
-function settings() {
-  const u = state.user;
-  return (
-    heading("Paramètres.", "Votre compte et la sécurité de votre accès.") +
-    `<section class="panel"><h2>Mon compte</h2><div class="form-grid">${[
-      ["Nom", u.name],
-      ["Adresse e-mail", u.email],
-      ["Profil", label(u.role)],
-    ]
-      .map(([k, v]) => `<p><small class="muted">${k}</small><br><b>${e(v)}</b></p>`)
-      .join("")}</div></section><section class="panel"><h2>Mot de passe</h2><p class="muted">12 caractères minimum. Après le changement, vos autres appareils sont déconnectés.</p><form id="settings-password"><div class="form-grid">${passwordField("current_password", "Mot de passe actuel", "current-password")}${passwordField("new_password", "Nouveau mot de passe", "new-password")}${passwordField("confirm_password", "Confirmer le nouveau mot de passe", "new-password")}</div><p class="error" data-error></p><button class="primary">Changer mon mot de passe</button></form></section>` +
-    (admin()
-      ? `<section class="panel"><h2>Accès des utilisateurs</h2><p class="muted">Invitez des clients ou partenaires et gérez leurs accès.</p>${btn("Gérer les accès", "nav", "people")}</section>`
-      : "") +
-    `<section class="panel"><h2>Session</h2><p class="muted">Connecté en tant que ${e(u.email)}.</p>${btn("Déconnexion", "logout")}</section>`
-  );
-}
 function render() {
   let content;
   if (personId) {
@@ -261,7 +240,6 @@ function render() {
     return;
   }
   if (view === "dashboard") content = dashboard();
-  if (view === "settings") content = settings();
   if (view === "projects")
     content =
       heading(
@@ -1003,33 +981,6 @@ document.addEventListener("click", async (ev) => {
       );
   } catch (err) {
     notify(err.message);
-  }
-});
-document.addEventListener("submit", async (ev) => {
-  if (ev.target.id !== "settings-password") return;
-  ev.preventDefault();
-  const form = ev.target,
-    b = form.querySelector("button"),
-    error = form.querySelector("[data-error]"),
-    data = Object.fromEntries(new FormData(form));
-  error.textContent = "";
-  if (data.new_password !== data.confirm_password) {
-    error.textContent = "Les deux nouveaux mots de passe ne correspondent pas.";
-    return;
-  }
-  b.disabled = true;
-  try {
-    await api("password-change", {
-      current_password: data.current_password,
-      new_password: data.new_password,
-    });
-    form.reset();
-    await refresh();
-    notify("Mot de passe modifié. Vos autres appareils ont été déconnectés.");
-  } catch (err) {
-    error.textContent = err.message;
-  } finally {
-    b.disabled = false;
   }
 });
 document.addEventListener("input", (ev) => {
