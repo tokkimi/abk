@@ -5,27 +5,41 @@
   const toggle=section.querySelector('[data-hero-toggle]');
   const reduced=matchMedia('(prefers-reduced-motion:reduce)');
   const mobile=matchMedia('(max-width:760px)');
-  let visible=true,userPaused=false;
+  let visible=true;
   section.classList.add('is-ready');
   video.muted=true;
-  function labels(){toggle.textContent=userPaused?'▶':'Ⅱ';toggle.setAttribute('aria-label',userPaused?'Lire l’animation':'Mettre en pause l’animation');}
-  async function resume(){
-    if(reduced.matches||userPaused||!visible||document.hidden){video.pause();return;}
-    try{await video.play();toggle.hidden=false;}catch(_){toggle.hidden=false;userPaused=true;labels();}
+  video.loop=false;
+  function labels(){
+    const playing=!video.paused&&!video.ended;
+    toggle.textContent=playing?'Ⅱ':'▶';
+    toggle.setAttribute('aria-label',playing?'Mettre en pause l’animation':'Lire l’animation');
+    toggle.hidden=false;
+  }
+  async function play(){
+    if(reduced.matches||!visible||document.hidden)return;
+    if(video.ended)video.currentTime=0;
+    try{await video.play();}catch(_){}
+    labels();
+  }
+  function pause(){
+    video.pause();
+    labels();
   }
   function source(){
     if(reduced.matches){video.pause();video.hidden=true;toggle.hidden=true;return;}
     video.hidden=false;
     const url=mobile.matches?'public/home-animation-mobile.mp4':'public/home-animation-desktop.mp4';
     if(video.getAttribute('src')!==url){video.src=url;video.load();}
-    resume();
+    labels();
   }
-  video.addEventListener('playing',()=>{video.classList.add('is-playing');toggle.hidden=false;});
+  video.addEventListener('playing',()=>{video.classList.add('is-playing');labels();});
+  video.addEventListener('pause',()=>{video.classList.remove('is-playing');labels();});
+  video.addEventListener('ended',()=>{video.classList.remove('is-playing');labels();});
   video.addEventListener('error',()=>{video.hidden=true;toggle.hidden=true;});
-  toggle.addEventListener('click',()=>{userPaused=!userPaused;labels();resume();});
-  new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;resume();},{threshold:.05}).observe(section);
-  document.addEventListener('visibilitychange',resume);
+  toggle.addEventListener('click',()=>{video.paused||video.ended?play():pause();});
+  new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(!visible)pause();},{threshold:.05}).observe(section);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)pause();});
   mobile.addEventListener('change',source);reduced.addEventListener('change',source);
-  addEventListener('pageshow',resume);
+  addEventListener('pageshow',source);
   source();
 })();
