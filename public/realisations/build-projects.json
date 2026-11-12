@@ -1,0 +1,21 @@
+[
+  {
+    "id": "maconnerie",
+    "title": "Un chantier de maçonnerie",
+    "description": "Deux vues vidéo du même chantier, en cours de réalisation.",
+    "media": [
+      {
+        "type": "video",
+        "src": "public/realisations/videos/maconnerie-01.mp4",
+        "thumbnail": "public/realisations/videos/maconnerie-01.webp",
+        "alt": "Murs et ouvertures du chantier de maçonnerie"
+      },
+      {
+        "type": "video",
+        "src": "public/realisations/videos/maconnerie-02.mp4",
+        "thumbnail": "public/realisations/videos/maconnerie-02.webp",
+        "alt": "Vue intérieure du même chantier de maçonnerie"
+      }
+    ]
+  }
+]

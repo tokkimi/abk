@@ -1,0 +1,6 @@
+{
+  "imports": {
+    "pg": "npm:pg@8.16.3",
+    "pdfkit": "npm:pdfkit@0.17.2/js/pdfkit.standalone.js"
+  }
+}
