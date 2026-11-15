@@ -10,3 +10,38 @@
  let panel=document.querySelector('.contact-panel');if(!panel){panel=document.createElement('aside');panel.className='contact-panel partner-contact-panel';panel.setAttribute('aria-label','Contacter ABK');panel.innerHTML='<button type="button" class="partner-contact-close" aria-label="Fermer le contact">×</button><h2>Parlons de votre projet.</h2><button class="button primary" type="button" data-quote-category="piscine">Piscines & extérieurs</button><button class="button primary" type="button" data-quote-category="renovation">Bâti & rénovation</button><button class="button primary" type="button" data-quote-category="incendie">Réserves incendie</button>';document.body.append(panel);const bubble=document.createElement('button');bubble.type='button';bubble.className='partner-contact-bubble';bubble.setAttribute('aria-label','Ouvrir la bulle de contact');bubble.innerHTML='<img src="/public/abk-logo.webp" alt="" width="45" height="45">';bubble.onclick=()=>panel.classList.toggle('open');panel.querySelector('.partner-contact-close').onclick=()=>panel.classList.remove('open');panel.querySelectorAll('[data-quote-category]').forEach(button=>button.onclick=()=>{panel.classList.remove('open');window.ABKQuote?.open(button.dataset.quoteCategory);});document.body.append(bubble);}panel.append(entry);
  dialog.querySelector('form').onsubmit=async event=>{event.preventDefault();const form=event.currentTarget,button=form.querySelector('[type=submit]'),status=form.querySelector('[role=status]'),data=Object.fromEntries(new FormData(form));button.disabled=true;status.textContent='Envoi en cours…';try{const names={company:'Société',position:'Fonction',registration:'Identifiant professionnel',website_url:'Site / portfolio',territory:'Territoire',kind:'Type de collaboration',expertise:'Expertise',specialty:'Spécialité et expérience',availability:'Calendrier',budget_status:'Budget',budget:'Montant / modalités',volume:'Volume potentiel',references:'Références / assurances',proposal:'Proposition',notes:'Précisions'};const content=['DEMANDE DE PARTENARIAT · ABK',...Object.entries(names).filter(([k])=>data[k]).map(([k,label])=>`${label} : ${data[k]}`)].join('\n\n');const category=data.expertise==='Piscines & extérieurs'?'piscine':data.expertise==='Réserves incendie'?'incendie':'renovation';const response=await fetch('/api/gestion?action=quote',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:data.name,email:data.email,phone:data.phone,category,content,source:'partnership:'+location.pathname,consent:data.consent==='on',website:data.website})});const result=await response.json();if(!response.ok)throw Error(result.error||'Envoi impossible.');status.textContent=`Votre proposition a bien été reçue par ABK. Référence : ${result.reference}`;button.hidden=true;for(const input of form.querySelectorAll('input,select,textarea'))input.disabled=true;}catch(error){status.textContent=error.message;button.disabled=false;}};
 })();
+
+(() => {
+  const section = document.querySelector('#marques');
+  if (!section) return;
+
+  const logos = section.querySelector('.brand-strip');
+  if (!logos) return;
+
+  const brands = [
+    ['Camarol', 'camarol.webp', 'https://www.camarol.com/'],
+    ['SCP Europe', 'scp-europe.svg', 'https://www.scpeurope.fr/fr'],
+    ['AstralPool by Fluidra', 'astralpool-fluidra.webp', 'https://www.fluidra.com/brands/astralpool/'],
+    ['Chausson Matériaux', 'chausson.svg', 'https://www.chausson.fr/'],
+    ['Béton Garandeau', 'garandeau.webp', 'https://www.garandeau.fr/betons/'],
+    ['PUM', 'pum.webp', 'https://www.mypum.fr/'],
+  ];
+
+  section.querySelector('h2').textContent = 'Nos marques et partenaires';
+  section.querySelector('.eyebrow').remove();
+  section.querySelector('p:last-child').textContent = 'Les marques et logos restent la propriété de leurs titulaires.';
+  logos.setAttribute('aria-label', 'Marques et partenaires');
+  for (const [name, filename, url] of brands) {
+    const link = document.createElement('a');
+    link.href = url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    const logo = document.createElement('img');
+    logo.src = 'public/brands/equipment/' + filename;
+    logo.alt = name;
+    logo.loading = 'lazy';
+    logo.draggable = false;
+    link.append(logo);
+    logos.append(link);
+  }
+})();
