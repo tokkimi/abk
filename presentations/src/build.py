@@ -69,7 +69,7 @@ def cover(partner, title_html, subtitle, pic, caption, meeting):
       <h1>{title_html}</h1>
       <p class="lead">{subtitle}</p>
     </div>
-    <div class="meta"><div><strong>Document de rendez-vous</strong>{meeting}</div><div><strong>Édition</strong>Novembre 2026</div><div><strong>Contact</strong>contact@abk-bati-piscine.fr</div></div>
+    <div class="meta"><div><strong>Document de rendez-vous</strong>{meeting}</div><div><strong>Édition</strong>Novembre 2026</div><div><strong>Contact</strong>05 46 05 72 92</div></div>
   </div>
   <div class="right"><img class="cover-photo" src="{photo(pic)}" alt="{caption}"><span class="cover-cap">{caption}</span></div>
 </section>'''
@@ -80,14 +80,14 @@ def about(label, n, angle):
   <div class="split" style="align-items:start;flex:0">
     <h2>Construire, rénover, embellir.<br><em>Un seul partenaire, toutes les compétences.</em></h2>
     <div style="display:flex;flex-direction:column;gap:14px">
-      <p class="lead">ABK Bâti &amp; Piscine conduit les projets de l’étude à la pose : bâti et rénovation, piscines et aménagements extérieurs, réserves d’eau pour la défense incendie. Une équipe rigoureuse, des partenaires sélectionnés et une visibilité totale sur chaque étape.</p>
+      <p class="lead">Fondée en 1986 et reprise par Karine et son frère Benjamin, ABK Bâti &amp; Piscine conduit les projets de l’étude à la pose : bâti et rénovation, piscines et aménagements extérieurs, réserves d’eau pour la défense incendie.</p>
       <p class="note">{angle}</p>
     </div>
   </div>
   <div class="stats">
-    <div><b>15 ans</b><span>d’expérience terrain</span></div>
-    <div><b>7 500+</b><span>installations certifiées</span></div>
-    <div><b>100 %</b><span>des clients accompagnés de bout en bout</span></div>
+    <div><b>1986</b><span>création de l’entreprise familiale</span></div>
+    <div><b>3</b><span>expertises : piscine, bâti, défense incendie</span></div>
+    <div><b>Royan</b><span>62 ter rue François Arago</span></div>
     <div><b>24 h</b><span>ouvrées pour rappeler chaque demande</span></div>
   </div>
   <div class="grid g3">
@@ -131,10 +131,11 @@ def contact(label, n, title, questions):
     </div>
     <div class="box">
       <img src="{LOGO}" alt="ABK Bâti &amp; Piscine" style="width:170px;background:#fff;border-radius:14px;padding:10px 14px">
-      <div class="row"><span>Interlocuteur</span><b class="fill">[Prénom Nom · fonction]</b></div>
-      <div class="row"><span>Téléphone</span><b class="fill">[06 00 00 00 00]</b></div>
-      <div class="row"><span>E-mail</span><b>contact@abk-bati-piscine.fr</b></div>
-      <div class="row"><span>Engagement</span><b>Rappel sous 24 h ouvrées</b></div>
+      <div class="row"><span>Interlocuteur</span><b>Karine &amp; Benjamin, dirigeants</b></div>
+      <div class="row"><span>Téléphone</span><b>05 46 05 72 92</b></div>
+      <div class="row"><span>E-mail</span><b>info@abk-piscine.fr</b></div>
+      <div class="row"><span>Adresse</span><b>62 ter rue François Arago, 17200 Royan</b></div>
+      <div class="row"><span>Site</span><b>www.abk-bati.com</b></div>
     </div>
   </div>
   {foot(label, n)}
@@ -345,6 +346,7 @@ royan = doc("ABK × Ville de Royan", [
     "Quelles consultations de travaux sont prévues dans les prochains mois ?"]),
 ])
 
-for name, html in (("abk-x-orpi", orpi), ("abk-x-ville-de-royan", royan)):
-    (OUT / f"{name}.html").write_text(html)
-    print("écrit", OUT / f"{name}.html")
+if __name__ == "__main__":
+    for name, html in (("abk-x-orpi", orpi), ("abk-x-ville-de-royan", royan)):
+        (OUT / f"{name}.html").write_text(html)
+        print("écrit", OUT / f"{name}.html")
