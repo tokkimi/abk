@@ -14,6 +14,20 @@ LOGO = b64("logo-abk.webp", "image/webp")
 SHOT = b64("espace-client.jpg", "image/jpeg")
 CSS = (SRC / "dossier.css").read_text()
 
+def photo(name):
+    return b64(f"img/{name}.jpg", "image/jpeg")
+
+PARTNERS = [  # mêmes partenaires que la home du site
+    ("Camarol", "camarol.webp", "image/webp", "Citernes souples", "Réserves d’eau souples pour la défense incendie."),
+    ("AstralPool by Fluidra", "astralpool-fluidra.webp", "image/webp", "Équipements piscine", "Filtration, pompes, pièces à sceller et équipements de bassin."),
+    ("SCP Europe", "scp-europe.svg", "image/svg+xml", "Distribution piscine", "Matériel et fournitures pour la construction et l’entretien des piscines."),
+    ("Akeron", "akeron.png", "image/png", "Traitement de l’eau", "Régulation et traitement automatique de l’eau des bassins."),
+    ("Dolphin by Maytronics", "maytronics.svg", "image/svg+xml", "Robots de nettoyage", "Robots nettoyeurs pour un entretien simple des bassins."),
+    ("Chausson Matériaux", "chausson.svg", "image/svg+xml", "Matériaux de construction", "Négoce de matériaux pour le gros œuvre et la rénovation."),
+    ("Béton Garandeau", "garandeau.webp", "image/webp", "Béton", "Béton prêt à l’emploi pour structures, dalles et bassins."),
+    ("PUM", "pum.webp", "image/webp", "Réseaux &amp; raccords", "Tubes, raccords et solutions pour les réseaux hydrauliques."),
+]
+
 ICONS = {
  "pool": '<path d="M3 16c2 0 2-1.4 4.5-1.4S10 16 12 16s2-1.4 4.5-1.4S19 16 21 16M3 20c2 0 2-1.4 4.5-1.4S10 20 12 20s2-1.4 4.5-1.4S19 20 21 20M8 13V5a2 2 0 0 1 4 0M14 13V5a2 2 0 0 1 4 0M8 8h6M8 11h6"/>',
  "house": '<path d="M3 11 12 4l9 7M5 10v10h14V10M10 20v-6h4v6"/>',
@@ -42,54 +56,11 @@ def card(icon, title, body, items=None, tag=None):
     ul = f'<ul class="ticks">{lis}</ul>' if items else ""
     return f'<div class="card">{t}<div class="chead">{ico(icon)}<h3>{title}</h3></div><p>{body}</p>{ul}</div>'
 
-def foot(label, n):
-    return f'<div class="foot"><span>ABK Bâti &amp; Piscine · {label}</span><span>{n:02d}</span></div>'
-
-# ---------------------------------------------------------------- illustrations
-SKY_WAVES = '''
-  <g opacity=".9"><path d="M0 640 C80 620 160 660 250 640 S420 620 500 640 V794 H0z" fill="#1580bd"/>
-  <path d="M0 690 C90 670 170 710 260 690 S420 670 500 690 V794 H0z" fill="#0a6aa6"/></g>
-  <g stroke="#ffffff" stroke-opacity=".45" stroke-width="2" fill="none">
-  <path d="M30 665 q30 -10 60 0 t60 0"/><path d="M300 712 q30 -10 60 0 t60 0"/><path d="M120 740 q30 -10 60 0 t60 0"/></g>'''
-
-COVER_ORPI = f'''<svg viewBox="0 0 500 794" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-  <circle cx="330" cy="250" r="120" fill="#ffc04a"/><circle cx="330" cy="250" r="150" fill="#ffc04a" opacity=".18"/>
-  <path d="M70 330 L250 200 L430 330z" fill="#123f73"/>
-  <rect x="100" y="328" width="300" height="232" fill="#fbfcfb"/>
-  <rect x="135" y="372" width="64" height="64" fill="#0f5b8f" stroke="#fff" stroke-width="8"/>
-  <rect x="300" y="372" width="64" height="64" fill="#0f5b8f" stroke="#fff" stroke-width="8"/>
-  <rect x="222" y="440" width="58" height="120" rx="4" fill="#ff9d18"/><circle cx="268" cy="502" r="4" fill="#fff"/>
-  <rect x="40" y="560" width="420" height="16" fill="#e7eef0"/>
-  <rect x="70" y="576" width="360" height="60" rx="10" fill="#41c5e6"/>
-  <path d="M90 600 q25 -8 50 0 t50 0 t50 0 t50 0 t50 0 t50 0" stroke="#fff" stroke-opacity=".7" stroke-width="3" fill="none"/>
-  <g transform="translate(395 445)"><rect x="-3" y="0" width="7" height="120" fill="#6b4a2b"/>
-  <rect x="-62" y="10" width="124" height="66" rx="8" fill="#fff" stroke="#123f73" stroke-width="3"/>
-  <text x="0" y="38" text-anchor="middle" font-family="Manrope,sans-serif" font-weight="800" font-size="15" fill="#123f73">TRAVAUX</text>
-  <text x="0" y="60" text-anchor="middle" font-family="Manrope,sans-serif" font-weight="800" font-size="15" fill="#e9780c">CHIFFRÉS ✓</text></g>
-  {SKY_WAVES}
-</svg>'''
-
-COVER_ROYAN = f'''<svg viewBox="0 0 500 794" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-  <circle cx="160" cy="300" r="110" fill="#ffc04a"/><circle cx="160" cy="300" r="145" fill="#ffc04a" opacity=".18"/>
-  <rect x="0" y="420" width="500" height="40" fill="#2aa7d6" opacity=".6"/>
-  <g fill="#1f5a45"><path d="M410 470 l-38 -70 h20 l-28 -55 h18 l-20 -45 l46 0 l-20 45 h18 l-28 55 h20 l-38 70z" transform="translate(30 30)"/>
-  <rect x="452" y="500" width="10" height="40" fill="#6b4a2b"/></g>
-  <rect x="60" y="440" width="320" height="16" rx="3" fill="#123f73"/>
-  <rect x="80" y="456" width="280" height="110" fill="#fbfcfb"/>
-  <g fill="#123f73">{''.join(f'<rect x="{100+i*22}" y="470" width="9" height="56"/>' for i in range(6))}</g>
-  <rect x="245" y="470" width="96" height="56" fill="#0f5b8f" stroke="#fff" stroke-width="6"/>
-  <rect x="90" y="566" width="10" height="34" fill="#123f73"/><rect x="340" y="566" width="10" height="34" fill="#123f73"/>
-  <rect x="40" y="598" width="420" height="10" fill="#efe3c6"/>
-  <g transform="translate(250 560)"><ellipse cx="0" cy="28" rx="120" ry="16" fill="#0b2d4a" opacity=".18"/>
-  <path d="M-105 26 C-112 -4 -80 -14 0 -14 S112 -4 105 26 Z" fill="#3b4f3c"/>
-  <path d="M-80 -6 C-40 -12 40 -12 80 -6" stroke="#7d9a7e" stroke-width="3" fill="none"/>
-  <rect x="96" y="12" width="34" height="10" rx="3" fill="#d7312f"/><circle cx="134" cy="17" r="8" fill="#d7312f"/></g>
-  
-  {SKY_WAVES}
-</svg>'''
+def foot(label, n=None):
+    return f'<div class="foot"><span>ABK Bâti &amp; Piscine · {label}</span><span>@@N@@</span></div>'
 
 # ---------------------------------------------------------------- pages communes
-def cover(partner, title_html, subtitle, art, meeting):
+def cover(partner, title_html, subtitle, pic, caption, meeting):
     return f'''<section class="page cover">
   <div class="left">
     <img class="logo" src="{LOGO}" alt="ABK Bâti &amp; Piscine">
@@ -100,7 +71,7 @@ def cover(partner, title_html, subtitle, art, meeting):
     </div>
     <div class="meta"><div><strong>Document de rendez-vous</strong>{meeting}</div><div><strong>Édition</strong>Novembre 2026</div><div><strong>Contact</strong>contact@abk-bati-piscine.fr</div></div>
   </div>
-  <div class="right">{art}</div>
+  <div class="right"><img class="cover-photo" src="{photo(pic)}" alt="{caption}"><span class="cover-cap">{caption}</span></div>
 </section>'''
 
 def about(label, n, angle):
@@ -169,6 +140,10 @@ def contact(label, n, title, questions):
   {foot(label, n)}
 </section>'''
 
+def number(html):
+    parts = html.split("@@N@@")
+    return "".join(p + (f"{i+2:02d}" if i < len(parts)-1 else "") for i, p in enumerate(parts))
+
 def doc(title, pages):
     return f'''<title>{title}</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -176,17 +151,49 @@ def doc(title, pages):
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Manrope:wght@600;700;800&display=swap">
 <style>{CSS}</style>
 <main class="deck">
-{"".join(pages)}
+{number("".join(pages))}
 </main>
 '''
+
+CAPTIONS = {
+ "maison-contemporaine_01": "Villa contemporaine et bassin", "cour-pierre_01": "Piscine et cour en pierre",
+ "vue-mer_05": "Piscine vue mer", "vue-mer_01": "Piscine face à l’océan", "transformation-bassin_oct-29-02": "Transformation d’un bassin",
+ "volet-jardin_01": "Volet de sécurité et plage bois", "maison-bois_01": "Bassin et terrasse bois",
+ "espace-aquatique_03": "Espace aquatique", "terrassement-local_oct-29-03": "Terrassement et gros œuvre",
+ "jardin-mediterraneen_02": "Rénovation d’une piscine existante",
+}
+
+def realisations(label, pics):
+    tiles = "".join(f'<figure class="ph"><img src="{photo(p)}" alt="{CAPTIONS[p]}"><figcaption>{CAPTIONS[p]}</figcaption></figure>' for p in pics)
+    return f'''<section class="page">
+  <div class="eyebrow">Nos réalisations</div>
+  <h2>Des chantiers menés <em>de la terre à la mise en eau.</em></h2>
+  <div class="photos">{tiles}</div>
+  {foot(label)}
+</section>'''
+
+def partners(label, angle):
+    cards = "".join(f'''<div class="pcard"><div class="plogo"><img src="{b64('img/partenaires/'+f, m)}" alt="{n}"></div><span class="pcat">{cat}</span><b>{n}</b><p>{d}</p></div>''' for n, f, m, cat, d in PARTNERS)
+    return f'''<section class="page">
+  <div class="eyebrow">Nos partenaires</div>
+  <div class="split" style="flex:0;align-items:end">
+    <h2>Des marques reconnues <em>derrière chaque chantier.</em></h2>
+    <p class="lead">ABK s’appuie sur des fabricants et distributeurs de référence pour les piscines, la défense incendie et le bâti. {angle}</p>
+  </div>
+  <div class="partners">{cards}</div>
+  <p class="note push">Partenaires et marques présentés sur le site ABK. Les marques et logos restent la propriété de leurs titulaires.</p>
+  {foot(label)}
+</section>'''
 
 # ---------------------------------------------------------------- ORPI
 L1 = "Partenariat Orpi"
 orpi = doc("ABK × Orpi", [
  cover("Orpi", "Des biens qui se vendent <span>avec un projet chiffré.</span>",
        "Proposition de partenariat entre ABK Bâti &amp; Piscine et l’agence Orpi : accompagner vendeurs et acquéreurs sur les travaux, de l’estimation à la remise des clés.",
-       COVER_ORPI, "Agence Orpi · partenariat local"),
+       "maison-contemporaine_01", "Réalisation ABK · villa contemporaine et piscine", "Agence Orpi · partenariat local"),
  about(L1, 2, "Pour une agence immobilière, ABK est un relais unique : un seul contact pour chiffrer, planifier et réaliser les travaux d’un bien, qu’il s’agisse d’une remise en état avant la vente, d’une rénovation après l’achat ou d’une piscine."),
+ realisations(L1, ["maison-contemporaine_01","cour-pierre_01","vue-mer_05","transformation-bassin_oct-29-02","volet-jardin_01","maison-bois_01"]),
+ partners(L1, "Pour les clients de l’agence, ce sont des équipements reconnus, des pièces disponibles et des garanties fabricant sur ce que nous installons."),
  f'''<section class="page">
   <div class="eyebrow">Pourquoi travailler ensemble</div>
   <h2>La question qui ralentit une vente : <em>« combien coûtent les travaux ? »</em></h2>
@@ -266,8 +273,10 @@ L2 = "Rencontre Ville de Royan"
 royan = doc("ABK × Ville de Royan", [
  cover("Ville de Royan", "Un partenaire local pour <span>un territoire sûr et bien bâti.</span>",
        "Présentation d’ABK Bâti &amp; Piscine et pistes de collaboration avec la Ville : défense incendie, bâti, prévention autour de l’eau et emploi local.",
-       COVER_ROYAN, "Ville de Royan · services techniques et élus"),
+       "vue-mer_01", "Réalisation ABK · piscine face à l’océan", "Ville de Royan · services techniques et élus"),
  about(L2, 2, "Pour une collectivité, ABK apporte une expertise technique de proximité sur trois sujets qui la concernent directement : la défense extérieure contre l’incendie, l’entretien du bâti et la sécurité autour de l’eau."),
+ realisations(L2, ["vue-mer_05","espace-aquatique_03","transformation-bassin_oct-29-02","terrassement-local_oct-29-03","cour-pierre_01","jardin-mediterraneen_02"]),
+ partners(L2, "Pour la Ville, c’est l’assurance de matériels conformes et suivis, avec des fournisseurs implantés dans la région pour le béton et les matériaux."),
  f'''<section class="page">
   <div class="eyebrow">Les enjeux du territoire</div>
   <h2>Une ville littorale, <em>des besoins très concrets.</em></h2>
@@ -293,26 +302,7 @@ royan = doc("ABK × Ville de Royan", [
         <li>Dossier technique remis pour la réception par les services compétents</li>
       </ul>
     </div>
-    <div class="card" style="padding:18px">
-      <svg viewBox="0 0 460 300" role="img" aria-label="Schéma d’une réserve incendie souple avec poteau d’aspiration">
-        <rect x="0" y="0" width="460" height="300" rx="14" fill="#eaf6fa"/>
-        <rect x="0" y="210" width="460" height="90" fill="#cfe3d2"/>
-        <path d="M60 210 C50 160 110 150 210 150 S370 160 360 210 Z" fill="#3b4f3c"/>
-        <path d="M95 168 C150 160 280 160 330 168" stroke="#7d9a7e" stroke-width="3" fill="none"/>
-        <path d="M360 200 H400 V150" stroke="#123f73" stroke-width="8" fill="none" stroke-linecap="round"/>
-        <rect x="388" y="118" width="24" height="36" rx="5" fill="#d7312f"/>
-        <rect x="380" y="112" width="40" height="10" rx="4" fill="#d7312f"/>
-        <rect x="372" y="196" width="10" height="18" fill="#ff9d18"/>
-        <g font-family="DM Sans,sans-serif" font-size="12" fill="#072a5c">
-          <text x="140" y="138" font-weight="700">Citerne souple</text>
-          <text x="140" y="124" fill="#4f6680">30 à 120 m³ selon le besoin</text>
-          <text x="330" y="100" font-weight="700">Poteau d’aspiration</text>
-          <text x="290" y="244" font-weight="700">Vanne de sectionnement</text>
-          <path d="M377 214 L360 232" stroke="#072a5c"/>
-          <text x="40" y="270" fill="#4f6680">Plateforme stabilisée · accès engins de secours</text>
-        </g>
-      </svg>
-    </div>
+    <figure class="deci-fig"><img src="{photo('service-deci')}" alt="Réserve incendie souple raccordée à un poteau d’aspiration"><figcaption>Réserve souple, poteau d’aspiration et plateforme d’accès pour les engins de secours.</figcaption></figure>
   </div>
   {foot(L2, 4)}
 </section>''',
