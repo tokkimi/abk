@@ -346,7 +346,17 @@ royan = doc("ABK × Ville de Royan", [
     "Quelles consultations de travaux sont prévues dans les prochains mois ?"]),
 ])
 
+# Version A4 portrait pour l'impression en plaquette recto-verso : marges
+# symétriques, numéro de page centré (même position au recto et au verso),
+# pages de hauteur fixe.
+PORTRAIT = (SRC / "portrait.css").read_text()
+
+def portrait(html):
+    return (html.replace("</style>", PORTRAIT + "</style>", 1)
+                .replace('<main class="deck">', '<main class="deck a4p">', 1))
+
 if __name__ == "__main__":
     for name, html in (("abk-x-orpi", orpi), ("abk-x-ville-de-royan", royan)):
         (OUT / f"{name}.html").write_text(html)
-        print("écrit", OUT / f"{name}.html")
+        (OUT / f"{name}-a4-portrait.html").write_text(portrait(html))
+        print("écrit", OUT / f"{name}.html", "et sa version A4 portrait")

@@ -1,0 +1,51 @@
+
+/* A4 portrait (210 × 297 mm) pour plaquettes recto-verso.
+   Marges gauche/droite identiques, pied de page centré, hauteur de page fixe. */
+.a4p .page{width:min(794px,100%);min-height:1123px;padding:64px 60px 80px;gap:26px}
+.a4p .foot{left:60px;right:60px;bottom:30px;justify-content:center;gap:10px}
+.a4p .foot span:first-child::after{content:" ·"}
+.a4p h2{font-size:34px}
+.a4p .lead{font-size:16px}
+.a4p .split,.a4p .contact{grid-template-columns:1fr!important;gap:24px;align-items:start!important}
+.a4p .split[style*="flex:0"]{gap:14px}
+
+.a4p .cover{flex-direction:column;padding:0}
+.a4p .cover .right{flex:none;height:500px;order:-1}
+.a4p .cover .left{flex:1;padding:44px 60px 56px;gap:22px}
+.a4p .cover .logo{width:200px}
+.a4p .cover h1{font-size:46px}
+
+.a4p .stats b{font-size:30px}
+.a4p .stats div{padding:14px 14px 12px}
+.a4p .g3 .card ul.ticks{font-size:13px}
+
+.a4p .flow{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:26px}
+.a4p .flow::before{display:none}
+.a4p .flow .abk{min-height:0}
+
+.a4p .photos{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:250px}
+.a4p .partners{grid-template-columns:repeat(2,minmax(0,1fr))}
+.a4p .timeline{grid-template-columns:1fr}
+.a4p .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+.a4p .deci-fig img{height:430px}
+
+@page{size:210mm 297mm;margin:0}
+@media print{
+  .a4p .page{width:210mm;height:297mm;min-height:0}
+}
+
+/* Contenu centré verticalement entre le titre et le pied de page */
+.a4p .page:not(.cover) > .eyebrow + * + *{margin-top:auto}
+.a4p .page:not(.cover) > :nth-last-child(2){margin-bottom:auto}
+
+/* Partenaires : cartes plus compactes pour tenir sur la page */
+.a4p .partners{gap:12px}
+.a4p .pcard{padding:12px 14px 12px;gap:3px}
+.a4p .plogo{height:42px;margin-bottom:4px;padding-bottom:6px}
+.a4p .plogo img{max-height:32px}
+.a4p .pcard p{font-size:12.5px}
+
+/* Essai de 90 jours : trois colonnes */
+.a4p .timeline{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.a4p .phase{padding:18px 16px}
+.a4p .phase ul.ticks{font-size:13px}
