@@ -51,7 +51,7 @@
       "has": [
         {
           "type": "host",
-          "value": ".*\\.vercel\\.app"
+          "value": "abk-tokkimis-projects\\.vercel\\.app"
         }
       ],
       "destination": "https://www.abk-bati.com/:path*",
