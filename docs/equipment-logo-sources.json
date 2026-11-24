@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Akeron",
+    "page": "https://www.akeron.fr/",
+    "source": "https://le-cdn.website-editor.net/s/753b04c7987b4216a1d2117f3e59ee88/dms3rep/multi/opt/Fichier+21300-1920w.png?Expires=1795034570&Signature=dDWVFHg1fFQaKHrocFLiPFg0yDbg2MzWlsLazS0FXrGtJ6~kXR3TyZnKfGD45d3il3qd9mICNGTQh0DJdMIvdHx3~-JgZgtAvh4GWGBlJFsoDhQEjMb8KCEkXoFRhYSsFRyrMi6of9sBEnaKTbbCNBmudao9NpAXBfrBOkDX9Lr2x5AFekfz1mnX5VuzGyyR9g~EKTZXpPmxu7splL3CCaRa1AVUgh0S5Q0qrxYl-fu7AtajbFseFoWfLujUxA7dB7iA6Y33ISFqNg2AVzjW-m7DBqAHQsANnE4w4X7qBmqyL6oFfusNXSpbWXlFBkkIctu3Y1QjL7ew2BbG9cUubA__&Key-Pair-Id=K2NXBXLF010TJW",
+    "file": "public/brands/equipment/akeron.png"
+  },
+  {
+    "name": "Dolphin by Maytronics",
+    "page": "https://www.maytronics.com/fr-fr/",
+    "source": "https://www.maytronics.com/on/demandware.static/Sites-MTFR-Site/-/default/dw927d6b9f/images/Maytronics.svg",
+    "file": "public/brands/equipment/maytronics.svg"
+  }
+]
