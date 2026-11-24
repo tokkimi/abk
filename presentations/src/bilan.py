@@ -66,6 +66,13 @@ EXTRA = """
 .goal span{font-size:12.5px;color:var(--muted)}
 .prio{font:700 10.5px var(--text);letter-spacing:.08em;text-transform:uppercase;border-radius:99px;padding:4px 10px;align-self:flex-start}
 .p1{background:#ffe9cc;color:#b45d00}.p2{background:#dff1f8;color:#0a6aa6}
+.compact .card{padding:13px 15px;gap:4px}.compact .card h3{font-size:16px}.compact .card p{font-size:12.8px}
+.meet{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:12px;background:var(--ink);color:#fff;border-radius:18px;padding:18px 20px;align-items:center}
+.meet h3{font-size:18px;margin:6px 0 4px}
+.meet p{font-size:13px;color:#c5d6e6}
+.fmt{background:#0d3a75;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px;align-self:stretch}
+.fmt b{font:800 14.5px var(--display)}
+.fmt span{font-size:12.5px;color:#c5d6e6}
 .steps5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
 .st5{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:7px}
 .st5 i{font:800 13px var(--display);font-style:normal;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#fff}
@@ -76,7 +83,7 @@ EXTRA = """
 .cal b{display:block;font:800 13px var(--display);color:var(--orange-d);margin-bottom:4px}
 @media screen and (max-width:820px){
   .kpis6,.goals{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .win,.split3,.made,.weeks,.steps5,.cal{grid-template-columns:1fr}
+  .win,.split3,.made,.weeks,.steps5,.cal,.meet{grid-template-columns:1fr}
   .shots{grid-template-columns:1fr 1fr;grid-template-rows:auto}
   .shots figure{height:180px}.shots .tall{grid-row:auto}
   .bar i{width:14px}
@@ -146,7 +153,7 @@ pages = [
   <div class="grid g3">
     {card("house", "Site internet", "Six pages publiques, un espace client, un espace de gestion pour les demandes et les chantiers, et une animation d’accueil qui montre le métier en quelques secondes.")}
     {card("mega", "Réseaux sociaux", "Premier pic à plus de 1 600 vues autour du 9 novembre. Les contenus chantier et les hashtags locaux touchent surtout des personnes qui ne suivent pas encore le compte.")}
-    {card("users", "Partenariats", "Deux dossiers de rendez-vous prêts, huit marques partenaires présentées sur le site et un formulaire « Devenir partenaire » en place.")}
+    {card("users", "Partenariats", "Deux dossiers de rendez-vous prêts, huit marques partenaires présentées sur le site et un formulaire « Devenir partenaire » en place. Dès décembre, une rencontre entre pros chaque mois.")}
   </div>
   {foot(L)}
 </section>''',
@@ -299,15 +306,15 @@ pages = [
   <div class="weeks">
     <div class="phase"><span class="when">1 – 7 déc.</span><h3>Préparer</h3><ul class="ticks"><li>Caler les dates Mairie et Orpi</li><li>Imprimer les deux dossiers</li><li>Brancher le compteur de visites du site</li><li>Adresse, horaires et lien devis sur Instagram</li><li>Créer ou compléter la fiche Google de l’entreprise</li></ul></div>
     <div class="phase"><span class="when">8 – 14 déc.</span><h3>Rencontrer</h3><ul class="ticks"><li>Rendez-vous Mairie et Orpi</li><li>Compte rendu et proposition écrite sous 48 h</li><li>Distribuer les flyers aux agences et commerces</li><li>Reel « hivernage de la piscine »</li></ul></div>
-    <div class="phase"><span class="when">15 – 21 déc.</span><h3>Concrétiser</h3><ul class="ticks"><li>Relances et choix des premières actions</li><li>Premier bien Orpi ou site pilote Mairie</li><li>Contacter deux nouveaux partenaires de la liste</li><li>Reel avant/après d’un chantier</li></ul></div>
-    <div class="phase"><span class="when">22 – 31 déc.</span><h3>Préparer 2027</h3><ul class="ticks"><li>Vœux aux clients et partenaires</li><li>Reel « 2026 en images »</li><li>Offre printemps : étude piscine avant mars</li><li>Bilan du deuxième mois</li></ul></div>
+    <div class="phase"><span class="when">15 – 21 déc.</span><h3>Concrétiser</h3><ul class="ticks"><li>Relances et choix des premières actions</li><li>Premier bien Orpi ou site pilote Mairie</li><li>Contacter deux nouveaux partenaires de la liste</li><li>Premier café entre pros, avant les fêtes</li><li>Reel avant/après d’un chantier</li></ul></div>
+    <div class="phase"><span class="when">22 – 31 déc.</span><h3>Préparer 2027</h3><ul class="ticks"><li>Vœux aux clients et partenaires</li><li>Reel « 2026 en images »</li><li>Offre printemps : étude piscine avant mars</li><li>Bilan du deuxième mois</li><li>Fixer la rencontre pros de janvier</li></ul></div>
   </div>
   <div class="goals">
     <div class="goal"><b>2</b><span>propositions écrites envoyées (Mairie, Orpi)</span></div>
     <div class="goal"><b>12</b><span>publications dont 6 reels</span></div>
     <div class="goal"><b>40</b><span>abonnés Instagram</span></div>
     <div class="goal"><b>2 500</b><span>vues sur le mois</span></div>
-    <div class="goal"><b>1er</b><span>chiffre de visites du site</span></div>
+    <div class="goal"><b>1</b><span>rencontre entre pros, puis une par mois</span></div>
   </div>
   {foot(L)}
 </section>''',
@@ -316,7 +323,7 @@ pages = [
  f'''<section class="page">
   <div class="eyebrow">Développement des partenariats</div>
   <h2>Après Orpi et la Mairie, <em>les prochaines portes à ouvrir.</em></h2>
-  <div class="grid g3" style="grid-template-columns:repeat(4,minmax(0,1fr))">
+  <div class="grid g3 compact" style="grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
     <div class="card"><span class="prio p1">Priorité</span><h3>Autres agences immobilières</h3><p>Le même modèle que celui d’Orpi, une fois le pilote rodé : fiche travaux, visite acquéreur.</p></div>
     <div class="card"><span class="prio p1">Priorité</span><h3>Conciergeries &amp; locations saisonnières</h3><p>Remise en service des piscines avant la saison, dépannages rapides, entretien à l’année.</p></div>
     <div class="card"><span class="prio p1">Priorité</span><h3>Campings &amp; hôtels de la côte</h3><p>Bassins à rénover et réserves incendie pour les sites qui accueillent du public.</p></div>
@@ -326,7 +333,12 @@ pages = [
     <div class="card"><span class="prio p2">Ensuite</span><h3>Syndics de copropriété</h3><p>Entretien des piscines de résidence, travaux de maçonnerie et mises en conformité.</p></div>
     <div class="card"><span class="prio p2">Ensuite</span><h3>Fournisseurs partenaires</h3><p>Chantiers vitrines avec Camarol ou AstralPool : contenus communs et visibilité croisée.</p></div>
   </div>
-  <p class="note push">Pour chaque cible : une page de présentation adaptée à partir des dossiers existants, un premier contact en décembre ou janvier, un rendez-vous dans le mois qui suit.</p>
+  <div class="meet push">
+    <div><span class="prio p1">Chaque mois</span><h3>Une rencontre entre pros</h3><p>Un moment simple pour se faire connaître et entretenir le réseau : chaque partenaire rencontré invite un contact de son côté.</p></div>
+    <div class="fmt"><b>Café du matin</b><span>Petit-déjeuner à l’atelier ou sur un chantier en cours, 6 à 8 invités.</span></div>
+    <div class="fmt"><b>Dîner partenaires</b><span>Agents, notaires, architectes, conciergeries : une table, un sujet.</span></div>
+    <div class="fmt"><b>Afterwork réseau</b><span>Clubs d’entreprises et associations de commerçants du secteur.</span></div>
+  </div>
   {foot(L)}
 </section>''',
 
